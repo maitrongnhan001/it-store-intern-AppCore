@@ -1,0 +1,27 @@
+<section class="add-category center">
+    <br>
+    <h1>Thêm danh mục</h1>
+    <br>
+    <form class="add-category-form">
+        <div class="input-group">
+            <mdb-form-control class="full-width">
+                <input mdbInput type="text" id="category-name" class="form-control" />
+                <label mdbLabel class="form-label" for="category-name">Tên danh mục</label>
+            </mdb-form-control>
+        </div>
+        <div class="input-group">
+            <mdb-form-control class="full-width">
+                <input mdbInput type="text" id="category-description" class="form-control" />
+                <label mdbLabel class="form-label" for="category-description">Mô tả danh mục</label>
+            </mdb-form-control>
+        </div>
+        <div class="input-file-group">
+            <label class="form-label" for="category-image">Hình ảnh</label>
+            <input type="file" class="form-control" id="category-image" />
+        </div>
+        <div class="review-category-image"></div>
+        <br>
+        <a routerLink="/main/categories" class="btn btn-dark">Trở về</a>
+        <button type="submit" class="btn btn-primary">Thêm danh mục</button>
+    </form>
+</section>

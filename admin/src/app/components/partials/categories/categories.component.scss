@@ -1,0 +1,36 @@
+.categories {
+    width: 90%;
+
+    .search-component {
+        width: 300px;
+        padding-top: 20px;
+    }
+
+    .table {
+        tr {
+            td {
+                vertical-align: middle;
+                align-items: center;
+
+                img {
+                    width: 100px;
+                    border-radius: 10px;
+                    object-fit: fill;
+                }
+                
+                button {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .item {
+            transition: 0.2s all ease;
+            cursor: pointer;
+        }
+
+        .item:hover {
+            background-color: #efefef;
+        }
+    }
+}

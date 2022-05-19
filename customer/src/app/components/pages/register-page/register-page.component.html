@@ -1,0 +1,70 @@
+<section class="customer-login">
+    <div class="bg-customer-login">
+        <div class="login-component">
+            <br><br>
+            <img class="center" src="/assets/images/logo-app.png" alt="logo">
+            <br>
+            <h2 class="text-center">Đăng ký</h2>
+            <form action="" class="form-customer-login center">
+                <div class="input-group">
+                    <mdb-form-control class="full-width">
+                        <input mdbInput type="email" id="email" class="form-control" />
+                        <label mdbLabel class="form-label" for="email">email</label>
+                    </mdb-form-control>
+                </div>
+                <div class="input-group">
+                    <mdb-form-control class="full-width">
+                        <input mdbInput type="text" id="password" class="form-control" />
+                        <label mdbLabel class="form-label" for="password">Mật khẩu</label>
+                    </mdb-form-control>
+                </div>
+                <div class="input-group">
+                    <mdb-form-control class="full-width">
+                        <input mdbInput type="text" id="first-name" class="form-control" />
+                        <label mdbLabel class="form-label" for="first-name">Họ</label>
+                    </mdb-form-control>
+                </div>
+                <div class="input-group">
+                    <mdb-form-control class="full-width">
+                        <input mdbInput type="text" id="last-name" class="form-control" />
+                        <label mdbLabel class="form-label" for="last-name">Tên</label>
+                    </mdb-form-control>
+                </div>
+                <div class="input-group">
+                    <mdb-form-control class="full-width">
+                        <input mdbInput type="text" id="phone" class="form-control" />
+                        <label mdbLabel class="form-label" for="phone">Số điện thoại</label>
+                    </mdb-form-control>
+                </div>
+                <div class="input-group">
+                    <mdb-form-control class="full-width">
+                        <input mdbInput type="date" id="DOB" class="form-control" />
+                        <label mdbLabel class="form-label" for="DOB">Ngày sinh</label>
+                    </mdb-form-control>
+                </div>
+                Giới tính
+                <div class="input-gender-group">
+                    <div class="form-check">
+                        <input mdbRadio class="form-check-input" type="radio" name="gender" id="male" />
+                        <label class="form-check-label" for="male"> Nam </label>
+                    </div>
+                    <div class="form-check">
+                        <input mdbRadio class="form-check-input" type="radio" name="gender" id="female"
+                            [checked]="true" />
+                        <label class="form-check-label" for="female"> Nữ </label>
+                    </div>
+                    <div class="form-check">
+                        <input mdbRadio class="form-check-input" type="radio" name="gender" id="other"
+                            [checked]="true" />
+                        <label class="form-check-label" for="other"> Khác </label>
+                    </div>
+                </div>
+                <div class="link-feature">
+                    <a routerLink="/customer/login">Đăng nhập</a>
+                </div>
+                <br>
+                <button class="btn btn-primary center">Đăng ký</button>
+                <br><br><br>
+            </form>
+        </div>
+    </div>

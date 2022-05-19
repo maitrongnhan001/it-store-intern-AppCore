@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/regular.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+ 
+@import '~mdb-angular-ui-kit/assets/scss/mdb.scss';
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-group {
+    padding-bottom: 30px;
+    width: 100%;
+}
+
+.input-file-group {
+    padding-bottom: 30px;
+    width: 100%;
+}
+
+.text-color-app {
+    color: #0067A0 !important;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.animation-loading {
+    animation: start_loading_icon_animation 1s linear infinite;
+}
+
+@keyframes start_loading_icon_animation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

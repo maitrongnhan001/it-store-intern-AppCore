@@ -1,0 +1,30 @@
+<header class="admin-menu-component center">
+    <div class="logo">
+        <a routerLink="/admin/main">
+            <img class="center" src="/assets/images/logo-app.png" alt="logo">
+        </a>
+        <a routerLink="/admin/main" class="font-weight-bold text-color-app">Hệ thống quản lý</a>
+    </div>
+    <div class="menu">
+        <ul>
+            <li>
+                <a class="font-weight-bold" [class]="menuActiveItem[1]" routerLink="/main/categories">Danh mục</a>
+            </li>
+            <li>
+                <a class="font-weight-bold" [class]="menuActiveItem[2]" routerLink="/main/products">Sản phẩm</a>
+            </li>
+            <li>
+                <a class="font-weight-bold" [class]="menuActiveItem[3]" routerLink="/main/orders">Đơn hàng</a>
+            </li>
+            <li>
+                <a class="font-weight-bold" [class]="menuActiveItem[4]" routerLink="/main/profile">Tài khoản</a>
+            </li>
+            <li>
+                <span 
+                    class="font-weight-bold text-danger"
+                    (click)="handleLogout()"
+                >Đăng xuất</span>
+            </li>
+        </ul>
+    </div>
+</header>

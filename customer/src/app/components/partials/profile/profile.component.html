@@ -1,0 +1,63 @@
+<section class="profile center">
+    <h1>Thông tin tài khoản</h1>
+    <div class="profile-container">
+        <div class="feature-button">
+            <a routerLink="/customer/main/address" class="btn btn-primary">Quản lý địa chỉ giao hàng</a>
+            <a routerLink="/customer/main/reset-password" class="btn btn-primary">Đổi mật khẩu</a>
+        </div>
+        <br><br>
+        <div class="profile-information center">
+            <div class="col-image">
+                <img src="/assets/images/6.jpeg" alt="avatar">
+            </div>
+            <div class="col-information">
+                <form class="form-profile">
+                    <div class="input-group">
+                        <mdb-form-control class="full-width">
+                            <input mdbInput type="text" id="first-name" class="form-control" />
+                            <label mdbLabel class="form-label" for="first-name">Họ</label>
+                        </mdb-form-control>
+                    </div>
+                    <div class="input-group">
+                        <mdb-form-control class="full-width">
+                            <input mdbInput type="text" id="last-name" class="form-control" />
+                            <label mdbLabel class="form-label" for="last-name">Tên</label>
+                        </mdb-form-control>
+                    </div>
+                    <div class="input-group">
+                        <mdb-form-control class="full-width">
+                            <input mdbInput type="text" id="phone" class="form-control" />
+                            <label mdbLabel class="form-label" for="phone">Số điện thoại</label>
+                        </mdb-form-control>
+                    </div>
+                    <div class="input-group">
+                        <mdb-form-control class="full-width">
+                            <input mdbInput type="date" id="DOB" class="form-control" />
+                            <label mdbLabel class="form-label" for="DOB">Ngày sinh</label>
+                        </mdb-form-control>
+                    </div>
+                    Giới tính
+                    <div class="input-gender-group">
+                        <div class="form-check">
+                            <input mdbRadio class="form-check-input" type="radio" name="gender" id="male" />
+                            <label class="form-check-label" for="male"> Nam </label>
+                        </div>
+                        <div class="form-check">
+                            <input mdbRadio class="form-check-input" type="radio" name="gender" id="female"
+                                [checked]="true" />
+                            <label class="form-check-label" for="female"> Nữ </label>
+                        </div>
+                        <div class="form-check">
+                            <input mdbRadio class="form-check-input" type="radio" name="gender" id="other"
+                                [checked]="true" />
+                            <label class="form-check-label" for="other"> Khác </label>
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-primary">Lưu thay đổi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</section>

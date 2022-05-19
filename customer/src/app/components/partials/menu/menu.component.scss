@@ -1,0 +1,53 @@
+.customer-header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .logo-component {
+        height: 100%;
+        width: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        img {
+            width: 50px;
+        }
+
+        h4 {
+            margin: 0;
+        }
+    }
+
+    .search-component {
+        width: calc(60% - 180px);
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        .input-group {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .menu-component {
+        display: flex;
+        height: 100%;
+        width: calc(50% - 180px);
+        justify-content: space-around;
+        align-items: center;
+
+        .menu-item {
+            a {
+                cursor: pointer;
+            
+                p {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+<header class="customer-header">
+    <div class="logo-component">
+        <a routerLink="/customer/main">
+            <img src="/assets/images/logo-app.png" alt="logo">
+        </a>
+        <a routerLink="/customer/main">
+            <h4 class="text-color-app">IT STORE</h4>
+        </a>
+    </div>
+    <div class="search-component">
+        <div class="input-group ">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                aria-describedby="button-addon2" />
+            <button class="btn btn-outline-primary" type="button" id="button-addon2" mdbRipple rippleColor="danger">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </div>
+    <div class="menu-component">
+        <div class="menu-item text-center">
+            <a style="color: #0067A0;" routerLink="/customer/main/order-history" role="button">
+                <i class="fa-solid fa-file"></i>
+                <p>Đơn hàng</p>
+            </a>
+        </div>
+        <div class="menu-item text-center">
+            <a style="color: #0067A0;" routerLink="/customer/main/cart" role="button">
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <p>Giỏ hàng</p>
+            </a>
+        </div>
+        <div class="menu-item text-center">
+            <a style="color: #0067A0;" routerLink="/customer/main/profile" role="button">
+                <i class="fa-solid fa-user"></i>
+                <p>Đăng nhập</p>
+            </a>
+        </div>
+    </div>
+</header>

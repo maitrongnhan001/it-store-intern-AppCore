@@ -1,0 +1,11 @@
+.categories-component {
+    width: 90%;
+    margin-top: 50px;
+
+    .categories {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+}

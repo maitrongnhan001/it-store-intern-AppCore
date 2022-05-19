@@ -1,0 +1,20 @@
+footer {
+
+    .custom-logo {
+        display: flex;
+        align-items: center;
+
+        .img-logo-footer {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        a {
+            cursor: pointer;
+        }
+    }
+
+    .address {
+        text-align: justify;
+    }
+}
