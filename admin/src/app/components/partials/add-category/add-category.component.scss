@@ -6,6 +6,15 @@
         height: 200px;
         border-radius: 10px;
         background-color: #efefef;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+
+        img {
+            height: 100%;
+        }
     }
 
     .btn {

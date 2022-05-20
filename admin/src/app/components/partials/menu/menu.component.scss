@@ -32,6 +32,10 @@
         height: 100%;
         width: calc(100% - 250px);
 
+        .menu-btn {
+            display: none;
+        }
+
         ul {
             display: flex;
             width: 100%;
@@ -57,6 +61,97 @@
                 span {
                     cursor: pointer;
                 }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .admin-menu-component {
+        .logo {
+            width: 100px;
+
+            a:last-child {
+                display: none;
+            }
+
+            a:first-child {
+                margin-left: 20px;
+            }
+        }
+
+        .menu {
+            width: calc(100% - 100px);
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .admin-menu-component {
+        //flex-direction: column;
+        .menu {
+            .menu-btn {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content:flex-end;
+
+                .menu-btn-icon {
+                    padding: 10px;
+                    border-radius: 5px;
+                    margin-right: 20px;
+                    transition: 0.2s all ease;
+                    cursor: pointer;
+                    margin-top: 2px;
+
+                    h3 {
+                        margin: 0;
+                    }
+                }
+
+                .menu-active {
+                    background-color: #efefef;
+                }
+
+                .menu-btn-icon:hover {
+                    background-color: #efefef;
+                }
+            }
+
+            ul {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                z-index: 200;
+                width: 100%;
+                height: 200px;
+                flex-direction: column;
+                justify-content: flex-start;
+
+                li {
+                    width: 100%;
+                    height: 40px;
+                    display: block;
+                    background-color: #efefef;
+                    text-align: center;
+                    transition: 0.2s all ease;
+                    border-bottom: 1px solid #d9d9d9;
+
+                    a, span {
+                        line-height: 40px;
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                li:hover {
+                    background-color: #afafaf;
+                }
+            }
+
+            .menu-hide {
+                display: none;
             }
         }
     }

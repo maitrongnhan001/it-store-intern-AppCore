@@ -1,27 +1,44 @@
 <section class="add-category center">
     <br>
-    <h1>Thêm danh mục</h1>
+    <h1>Add category</h1>
     <br>
-    <form class="add-category-form">
+    <form class="add-category-form" [formGroup]="addCategoryForm" (submit)="handleSubmitCategory()">
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="text" id="category-name" class="form-control" />
-                <label mdbLabel class="form-label" for="category-name">Tên danh mục</label>
+                <input mdbInput mdbValidate formControlName="name" type="text" id="category-name" class="form-control" />
+                <label mdbLabel class="form-label" for="category-name">Category name</label>
+                <mdb-error *ngIf="getName.invalid && getName.touched">Category name is required</mdb-error>
             </mdb-form-control>
         </div>
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="text" id="category-description" class="form-control" />
-                <label mdbLabel class="form-label" for="category-description">Mô tả danh mục</label>
+                <input mdbInput formControlName="description" type="text" id="category-description" class="form-control" />
+                <label mdbLabel class="form-label" for="category-description">Category description</label>
             </mdb-form-control>
         </div>
         <div class="input-file-group">
-            <label class="form-label" for="category-image">Hình ảnh</label>
-            <input type="file" class="form-control" id="category-image" />
+            <label class="form-label" for="category-image">Photo</label>
+            <input 
+                type="file" 
+                class="form-control" 
+                id="category-image" 
+                (change)="handleUploadImage($event)"
+            />
         </div>
-        <div class="review-category-image"></div>
+        <div class="review-category-image">
+            <i *ngIf="uploadImageLoading" class="animation-loading fa-solid fa-spinner"></i>
+            <img 
+                *ngIf="image != null"
+                class="center" 
+                [src]="image" 
+                alt="photo"
+            >
+        </div>
         <br>
-        <a routerLink="/main/categories" class="btn btn-dark">Trở về</a>
-        <button type="submit" class="btn btn-primary">Thêm danh mục</button>
+        <a routerLink="/main/categories" class="btn btn-dark">Back</a>
+        <button type="submit" class="btn btn-primary">
+            <i *ngIf="uploadCategoryLoading" class="animation-loading fa-solid fa-spinner"></i>
+            <span *ngIf="!uploadCategoryLoading">Add category</span>
+        </button>
     </form>
 </section>

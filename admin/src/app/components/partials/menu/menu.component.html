@@ -3,27 +3,49 @@
         <a routerLink="/admin/main">
             <img class="center" src="/assets/images/logo-app.png" alt="logo">
         </a>
-        <a routerLink="/admin/main" class="font-weight-bold text-color-app">Hệ thống quản lý</a>
+        <a routerLink="/admin/main" class="font-weight-bold text-color-app">System control</a>
     </div>
     <div class="menu">
-        <ul>
+        <div class="menu-btn">
+            <div class="menu-btn-icon" (click)="handleClickMenu()">
+                <h3><i class="fa-solid fa-bars"></i> Menu</h3>
+            </div>
+        </div>
+        <ul [class]="hideMenu">
             <li>
-                <a class="font-weight-bold" [class]="menuActiveItem[1]" routerLink="/main/categories">Danh mục</a>
+                <a 
+                    class="font-weight-bold" 
+                    [class]="menuActiveItem[1]" 
+                    routerLink="/main/categories"
+                    (click)="handleHideMenu()"
+                >Categories</a>
             </li>
             <li>
-                <a class="font-weight-bold" [class]="menuActiveItem[2]" routerLink="/main/products">Sản phẩm</a>
+                <a 
+                    class="font-weight-bold" 
+                    [class]="menuActiveItem[2]" 
+                    routerLink="/main/products"
+                    (click)="handleHideMenu()"
+                >Products</a>
             </li>
             <li>
-                <a class="font-weight-bold" [class]="menuActiveItem[3]" routerLink="/main/orders">Đơn hàng</a>
+                <a 
+                    class="font-weight-bold" 
+                    [class]="menuActiveItem[3]" 
+                    routerLink="/main/orders"
+                    (click)="handleHideMenu()"
+                >Orders</a>
             </li>
             <li>
-                <a class="font-weight-bold" [class]="menuActiveItem[4]" routerLink="/main/profile">Tài khoản</a>
+                <a 
+                    class="font-weight-bold" 
+                    [class]="menuActiveItem[4]" 
+                    routerLink="/main/profile"
+                    (click)="handleHideMenu()"
+                >Profile</a>
             </li>
             <li>
-                <span 
-                    class="font-weight-bold text-danger"
-                    (click)="handleLogout()"
-                >Đăng xuất</span>
+                <span class="font-weight-bold text-danger" (click)="handleLogout()">Logout</span>
             </li>
         </ul>
     </div>

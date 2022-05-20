@@ -31,15 +31,12 @@ import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
-
-
-
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +82,8 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
           return '';
         }
       }
-    })
+    }),
+    ToastrModule.forRoot()
   ],
   providers: [JwtHelperService],
   bootstrap: [AppComponent]

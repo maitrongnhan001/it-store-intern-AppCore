@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConfigService } from './config.service';
@@ -18,11 +18,11 @@ export class AuthService {
     private httpClient: HttpClient, 
     private configService: ConfigService,
     private jwtHelper: JwtHelperService
-  ) { }
+  ) {}
 
 
   //------------handle-----------//
-  login(data: User):Observable<User> {
+  login(data: User):Observable<any> {
     const url = `${this.configService.url}/admin/auth/login`
     return this.httpClient.post<any>(url, data)
   }

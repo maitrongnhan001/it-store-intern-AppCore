@@ -17,6 +17,8 @@ export class MenuComponent implements OnInit {
     'text-muted',
   ]
 
+  hideMenu = 'menu-hide'
+
   constructor(
     private route: Router,
     private authService: AuthService
@@ -60,4 +62,12 @@ export class MenuComponent implements OnInit {
     this.route.navigate(['login'])
   }
 
+  handleClickMenu() {
+    this.hideMenu = (this.hideMenu === 'menu-hide') ?
+    '' : 'menu-hide'
+  }
+
+  handleHideMenu() {
+    this.hideMenu = 'menu-hide'
+  }
 }

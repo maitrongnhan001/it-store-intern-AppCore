@@ -1,76 +1,60 @@
 <section class="categories center">
     <br>
-    <h1>Danh mục hàng hoá</h1>
-    <a routerLink="/main/add-category" class="btn btn-primary">Thêm danh mục</a>
+    <h1>Categories</h1>
+    <a routerLink="/main/add-category" class="btn btn-primary">Add Category</a>
     <div class="search-component">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Tìm kiếm" aria-label="Tìm kiếm"
-                aria-describedby="button-addon2" />
-            <button class="btn btn-outline-primary" type="button" id="button-addon2" mdbRipple rippleColor="success">
-                Tìm kiếm
-            </button>
-        </div>
+        <form [formGroup]="searchForm" (submit)="handleSearch()">
+            <div class="input-group mb-3">
+                <input 
+                    formControlName="search"
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Search" 
+                    aria-label="Search"
+                    aria-describedby="button-addon2" />
+                <button class="btn btn-outline-primary" type="submit" id="button-addon2" mdbRipple rippleColor="success">
+                    <i *ngIf="searchLoading" class="animation-loading fa-solid fa-spinner"></i>
+                    <span *ngIf="!searchLoading">Search</span>
+                </button>
+            </div>
+        </form>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Tên</th>
-                <th>Hình ảnh</th>
-                <th>Mô tả</th>
-                <th>Quản lý</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="item">
-                <td>1</td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>Dạnh mục cho các sản phẩm laptop</td>
-                <td>
-                    <button class="btn btn-outline-success btn-sm btn-floating">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm btn-floating">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr class="item">
-                <td>2</td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>Dạnh mục cho các sản phẩm laptop</td>
-                <td>
-                    <button class="btn btn-outline-success btn-sm btn-floating">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm btn-floating">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr class="item">
-                <td>2</td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>Dạnh mục cho các sản phẩm laptop</td>
-                <td>
-                    <button class="btn btn-outline-success btn-sm btn-floating">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm btn-floating">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot></tfoot>
-    </table>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="item" *ngFor="let category of listCategory; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{category.name}}</td>
+                    <td>
+                        <img [src]="category.image" alt="">
+                    </td>
+                    <td>{{category.description}}</td>
+                    <td>
+                        <button class="btn btn-outline-success btn-sm btn-floating">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button 
+                            class="btn btn-outline-danger btn-sm btn-floating"
+                            (click)="handleDeleteCategory(category._id)"
+                        >
+                            <i *ngIf="deleteCategoryLoading == category._id" class="animation-loading fa-solid fa-spinner"></i>
+                            <i *ngIf="deleteCategoryLoading != category._id" class="fa-solid fa-xmark"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="text-center">
+            <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
+        </p>
+    </div>
 </section>
