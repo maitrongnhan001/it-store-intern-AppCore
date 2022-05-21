@@ -1,21 +1,26 @@
 <section class="profile center">
     <br>
-    <h1>Tài khoản</h1>
+    <h1>Profile</h1>
     <br>
-    <form class="add-category-form">
+    <form class="add-category-form" [formGroup]="resetPasswordForm" (submit)="handleSubmit()">
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="password" id="new-password" class="form-control" />
-                <label mdbLabel class="form-label" for="new-password">Mật khẩu mới</label>
+                <input mdbInput mdbValidate formControlName="password" type="password" id="new-password" class="form-control" />
+                <label mdbLabel class="form-label" for="new-password">New password</label>
+                <mdb-error *ngIf="getPassword.invalid && getPassword.touched">Password is required</mdb-error>
             </mdb-form-control>
         </div>
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="password" id="confirm-new-password" class="form-control" />
-                <label mdbLabel class="form-label" for="confirm-new-password">Nhập lại mật khẩu mới</label>
+                <input mdbInput mdbValidate formControlName="confirmPassword" type="password" id="confirm-new-password" class="form-control" />
+                <label mdbLabel class="form-label" for="confirm-new-password">Confirm new password</label>
+                <mdb-error *ngIf="getConfirmPassword.invalid && getConfirmPassword.touched">Confirm password is required</mdb-error>
             </mdb-form-control>
         </div>
-        <br>
-        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+        <p *ngIf="!isMatch" class="text-danger text-center">Confirm password doesn't match</p>
+        <button type="submit" class="btn btn-primary">
+            <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
+            <span *ngIf="!loading">Save</span>
+        </button>
     </form>
 </section>

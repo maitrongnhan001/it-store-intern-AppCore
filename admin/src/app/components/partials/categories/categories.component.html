@@ -39,7 +39,10 @@
                     </td>
                     <td>{{category.description}}</td>
                     <td>
-                        <button class="btn btn-outline-success btn-sm btn-floating">
+                        <button
+                            (click)="clickEdit(category._id)"
+                            class="btn btn-outline-success btn-sm btn-floating"
+                        >
                             <i class="fa-solid fa-pen"></i>
                         </button>
                         <button 

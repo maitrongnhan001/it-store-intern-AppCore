@@ -88,4 +88,8 @@ export class CategoriesComponent implements OnInit {
       }
     )
   }
+
+  clickEdit(id: string) {
+    this.router.navigate(['main', 'edit-category', id])
+  }
 }

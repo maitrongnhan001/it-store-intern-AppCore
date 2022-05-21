@@ -1,6 +1,6 @@
 <section class="add-category center">
     <br>
-    <h1>Add category</h1>
+    <h1>{{title}}</h1>
     <br>
     <form class="add-category-form" [formGroup]="addCategoryForm" (submit)="handleSubmitCategory()">
         <div class="input-group">
@@ -38,7 +38,7 @@
         <a routerLink="/main/categories" class="btn btn-dark">Back</a>
         <button type="submit" class="btn btn-primary">
             <i *ngIf="uploadCategoryLoading" class="animation-loading fa-solid fa-spinner"></i>
-            <span *ngIf="!uploadCategoryLoading">Add category</span>
+            <span *ngIf="!uploadCategoryLoading">{{title}}</span>
         </button>
     </form>
 </section>

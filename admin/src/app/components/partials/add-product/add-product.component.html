@@ -1,39 +1,112 @@
 <section class="add-product center">
     <br>
-    <h1>Thêm sản phẩm</h1>
+    <h1>{{title}}</h1>
     <br>
-    <form class="add-product-form">
+    <form class="add-product-form" [formGroup]="addProductForm" (submit)="handleSubmit()">
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="text" id="product-name" class="form-control" />
-                <label mdbLabel class="form-label" for="product-name">Tên hàng hoá</label>
+                <input mdbInput mdbValidate formControlName="name" type="text" id="product-name" class="form-control" />
+                <label mdbLabel class="form-label" for="product-name">Product name</label>
+            </mdb-form-control>
+            <mdb-error *ngIf="getName.invalid && getName.touched">Product name is required</mdb-error>
+        </div>
+
+        <div class="input-group">
+            <mdb-form-control class="full-width">
+                <select mdbInput mdbValidate formControlName="category" class="form-control form-select" id="category">
+                    <option *ngFor="let category of listCategory" [value]="category._id">{{category.name}}</option>
+                </select>
+                <label mdbLabel for="category" class="form-label">Category</label>
+                <mdb-error *ngIf="getCategory.invalid && getCategory.touched">Category is required</mdb-error>
             </mdb-form-control>
         </div>
+
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="text" id="product-description" class="form-control" />
-                <label mdbLabel class="form-label" for="product-description">Mô tả hàng hoá</label>
-            </mdb-form-control>
-        </div>
-        <div class="input-group">
-            <mdb-form-control class="full-width">
-                <input mdbInput type="text" id="product-sku" class="form-control" />
+                <input mdbInput mdbValidate formControlName="sku" type="text" id="product-sku" class="form-control" />
                 <label mdbLabel class="form-label" for="product-sku">Sku</label>
             </mdb-form-control>
+            <mdb-error *ngIf="getSku.invalid && getSku.touched">Sku is required</mdb-error>
         </div>
+
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="number" id="product-quantity" class="form-control" />
-                <label mdbLabel class="form-label" for="product-quantity">Số lượng</label>
+                <input mdbInput mdbValidate formControlName="price" type="number" id="product-price"
+                    class="form-control" />
+                <label mdbLabel class="form-label" for="product-price">Price</label>
             </mdb-form-control>
+            <mdb-error *ngIf="getPrice.invalid && getPrice.touched">Price is required</mdb-error>
         </div>
+
+        <div class="input-group">
+            <mdb-form-control class="full-width">
+                <input mdbInput mdbValidate formControlName="quantity" type="number" id="product-quantity"
+                    class="form-control" />
+                <label mdbLabel class="form-label" for="product-quantity">Quantity</label>
+            </mdb-form-control>
+            <mdb-error *ngIf="getQuantity.invalid && getQuantity.touched">Quantity is required</mdb-error>
+        </div>
+
+        <div class="input-group">
+            <angular-editor formControlName="description" [config]="editorConfig"></angular-editor>
+            <p *ngIf="getDescription.invalid && getDescription.touched" class="text-danger">Description is required</p>
+        </div>
+
         <div class="input-file-group">
-            <label class="form-label" for="product-image">Hình ảnh</label>
-            <input type="file" class="form-control" id="product-image" />
+            <label class="form-label" for="product-image">Add photo</label>
+            <input type="file" mdbValidate formControlName="image" class="form-control" id="product-image"
+                (change)="handleUploadImage($event)" />
+            <p *ngIf="getImage.invalid && getImage.touched && galleries.length == 0" class="text-danger">Photo is required</p>
         </div>
-        <div class="review-product-image"></div>
+
+        <div class="review-product-image">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>Photo</th>
+                        <th>Control</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="item" *ngFor="let gallery of galleries; let i = index">
+                        <td>
+                            <input 
+                                mdbRadio 
+                                class="form-check-input" 
+                                type="radio" 
+                                formControlName="avatar" 
+                                name="avatar"
+                                [checked]="gallery.url == initAvatarImage"
+                                [value]="gallery.url"
+                                id="flexRadioDefault1" />
+                        </td>
+                        <td>
+                            <img [src]="gallery.url" alt="photo">
+                        </td>
+                        <td>
+                            <button (click)="handleDeleteImage(i)" type="button"
+                                class="btn btn-outline-danger btn-sm btn-floating">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="text-center">
+                <i *ngIf="uploadImageLoading" class="animation-loading fa-solid fa-spinner"></i>
+            </p>
+            <p *ngIf="getAvatar.invalid && getAvatar.touched" class="text-danger">Avatar is required</p>
+        </div>
         <br>
-        <a routerLink="/admin/main/products" class="btn btn-dark">Trở về</a>
-        <button type="submit" class="btn btn-primary">Thêm danh mục</button>
+        <a routerLink="/main/products" class="btn btn-dark">Back</a>
+        <button type="submit" class="btn btn-primary">
+            <i *ngIf="uploadProductLoading" class="animation-loading fa-solid fa-spinner"></i>
+            <span *ngIf="!uploadProductLoading">{{title}}</span>
+        </button>
+        <br><br>
     </form>
 </section>
+<ngx-spinner type="ball-scale-multiple">
+    <i style="font-size: 50px; color: white" class="animation-loading fa-solid fa-spinner"></i>
+</ngx-spinner>

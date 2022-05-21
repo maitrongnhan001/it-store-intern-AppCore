@@ -6,31 +6,39 @@
         padding-top: 20px;
     }
 
-    .table {
-        tr {
-            td {
-                vertical-align: middle;
-                align-items: center;
+    .table-wrapper {
+        overflow-x: scroll;
+        .table {
+            min-width: 1000px;
+            tr {
+                td {
+                    vertical-align: middle;
+                    align-items: center;
 
-                img {
-                    width: 100px;
-                    border-radius: 10px;
-                    object-fit: fill;
+                    img {
+                        width: 100px;
+                        border-radius: 10px;
+                        object-fit: fill;
+                    }
+
+                    button {
+                        margin-right: 10px;
+                    }
                 }
-                
-                button {
-                    margin-right: 10px;
+
+                .name-product {
+                    max-width: 300px;
                 }
             }
-        }
 
-        .item {
-            transition: 0.2s all ease;
-            cursor: pointer;
-        }
+            .item {
+                transition: 0.2s all ease;
+                cursor: pointer;
+            }
 
-        .item:hover {
-            background-color: #efefef;
+            .item:hover {
+                background-color: #efefef;
+            }
         }
     }
 }

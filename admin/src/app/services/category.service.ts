@@ -22,6 +22,11 @@ export class CategoryService {
     return this.httpClient.get<any>(url, {headers: this.header})
   }
 
+  getCategoryById(id: string): Observable<any> {
+    const url = `${this.configService.url}/admin/categories/${id}`
+    return this.httpClient.get<any>(url, {headers: this.header})
+  }
+
   searchCategory(value: string): Observable<any> {
     const query = `?search=${value}`
     const url = `${this.configService.url}/admin/categories/${query}`
@@ -37,6 +42,18 @@ export class CategoryService {
   ): Observable<any> {
     const url = `${this.configService.url}/admin/categories`
     return this.httpClient.post<any>(url, value, {headers: this.header})
+  }
+
+  editCategory(
+    value: {
+      name: string,
+      description: string,
+      image: string
+    },
+    id: string
+  ): Observable<any> {
+    const url = `${this.configService.url}/admin/categories/${id}`
+    return this.httpClient.put<any>(url, value, {headers: this.header})
   }
 
   deleteCategory(id: string): Observable<any> {

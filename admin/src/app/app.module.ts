@@ -37,6 +37,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +77,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
+    AngularEditorModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {

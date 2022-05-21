@@ -1,68 +1,55 @@
 <section class="orders center">
     <br>
-    <h1>Danh mục hàng hoá</h1>
+    <h1>Orders</h1>
     <div class="search-component">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Tìm kiếm" aria-label="Tìm kiếm"
-                aria-describedby="button-addon2" />
-            <button class="btn btn-outline-primary" type="button" id="button-addon2" mdbRipple rippleColor="success">
-                Tìm kiếm
-            </button>
-        </div>
+        <form>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                    aria-describedby="button-addon2" />
+                <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="handleSearch()" mdbRipple
+                    rippleColor="success">
+                    <i *ngIf="searchLoading" class="animation-loading fa-solid fa-spinner"></i>
+                    <span *ngIf="!searchLoading">Search</span>
+                </button>
+            </div>
+        </form>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Hình ảnh</th>
-                <th>Tên sản phẩm</th>
-                <th>Người mua</th>
-                <th>Số điện thoại</th>
-                <th>Trạng thái</th>
-                <th>Thành tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="item">
-                <td>1</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>Laptop</td>
-                <td>Nguyễn Văn A</td>
-                <td>0123456789</td>
-                <td>pending</td>
-                <td>
-                    10.000.000
-                </td>
-            </tr>
-            <tr class="item">
-                <td>2</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>Laptop</td>
-                <td>Nguyễn Văn A</td>
-                <td>0123456789</td>
-                <td>pending</td>
-                <td>
-                    10.000.000
-                </td>
-            </tr>
-            <tr class="item">
-                <td>3</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>Laptop</td>
-                <td>Nguyễn Văn A</td>
-                <td>0123456789</td>
-                <td>pending</td>
-                <td>
-                    10.000.000
-                </td>
-            </tr>
-        </tbody>
-        <tfoot></tfoot>
-    </table>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Customer</th>
+                    <th>Email</th>
+                    <th>Phone number</th>
+                    <th>Payment method</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr 
+                    class="item" 
+                    *ngFor="let order of orders; let i = index"
+                    (click)="handleOrderDetails(order._id)"
+                >
+                    <td>{{i + 1}}</td>
+                    <td>
+                        {{order.user.firstName + " " + order.user.lastName}}
+                    </td>
+                    <td>{{order.user.email}}</td>
+                    <td>{{order.user.phone}}</td>
+                    <td>{{order.paymentMethod}}</td>
+                    <td>{{order.status}}</td>
+                    <td>
+                        {{order.totalPrice | currency: 'AUD'}}
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+        <p class="text-center">
+            <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
+        </p>
+    </div>
 </section>
