@@ -1,70 +1,54 @@
 <section class="cart center">
     <br>
-    <h1>Giỏ hàng</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    <div class="form-check">
-                        <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Tất cả
-                        </label>
-                    </div>
-                </th>
-                <th>Tên</th>
-                <th>Hình ảnh</th>
-                <th>giá</th>
-                <th>Số lượng</th>
-                <th>thành tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="item">
-                <td>
-                    <div class="form-check">
-                        <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                    </div>
-                </td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>10.000.000</td>
-                <td>1</td>
-                <td>10.000.000</td>
-            </tr>
-            <tr class="item">
-                <td>
-                    <div class="form-check">
-                        <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                    </div>
-                </td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>10.000.000</td>
-                <td>1</td>
-                <td>10.000.000</td>
-            </tr>
-            <tr class="item">
-                <td>
-                    <div class="form-check">
-                        <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                    </div>
-                </td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>10.000.000</td>
-                <td>1</td>
-                <td>10.000.000</td>
-            </tr>
-        </tbody>
-        <tfoot></tfoot>
-    </table>
+    <h1>Cart</h1>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="form-check">
+                            <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                (click)="handleCheckAll()" />
+                            <label class="form-check-label" for="flexCheckDefault">
+                                All
+                            </label>
+                        </div>
+                    </th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="item" *ngFor="let product of listProduct; let i = index"
+                    (click)="handleShowDetails(product._id)">
+                    <td>
+                        <div class="form-check">
+                            <input mdbCheckbox class="form-check-input" type="checkbox" [checked]="cart[i].check"
+                                id="flexCheckDefault" (click)="handleCheckCartItem($event, i)" />
+                        </div>
+                    </td>
+                    <td>{{product.name}}</td>
+                    <td>
+                        <img [src]="product.image" alt="product image">
+                    </td>
+                    <td>{{product.price | currency: "AUN"}}</td>
+                    <td>{{cart[i].quantity}}</td>
+                    <td>{{cart[i].quantity * product.price | currency: "AUN"}}</td>
+                    <td>
+                        <button class="btn btn-outline-danger btn-sm btn-floating"
+                            (click)="handleRemoveCartItem($event, i)">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
     <br><br>
     <div class="infomation-order">
         <p>
@@ -80,3 +64,6 @@
     </div>
     <br><br>
 </section>
+<ngx-spinner type="ball-scale-multiple">
+    <i style="font-size: 50px; color: white" class="animation-loading fa-solid fa-spinner"></i>
+</ngx-spinner>

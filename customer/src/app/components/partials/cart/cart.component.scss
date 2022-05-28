@@ -1,27 +1,39 @@
 .cart {
     width: 90%;
+    max-width: 1200px;
 
-    .table {
-        tr {
-            td {
-                vertical-align: middle;
-                align-items: center;
-    
-                img {
-                    width: 100px;
-                    border-radius: 10px;
-                    object-fit: fill;
+    .table-wrapper {
+        width: 100%;
+        overflow-x: scroll;
+
+        .table {
+            width: 1000px;
+            
+            tr {
+                td:first-child {
+                    min-width: 90px;
+                }
+
+                td {
+                    vertical-align: middle;
+                    align-items: center;
+        
+                    img {
+                        width: 100px;
+                        border-radius: 10px;
+                        object-fit: fill;
+                    }
                 }
             }
-        }
-    
-        .item {
-            transition: 0.2s all ease;
-            cursor: pointer;
-        }
-    
-        .item:hover {
-            background-color: #efefef;
+        
+            .item {
+                transition: 0.2s all ease;
+                cursor: pointer;
+            }
+        
+            .item:hover {
+                background-color: #efefef;
+            }
         }
     }
 }

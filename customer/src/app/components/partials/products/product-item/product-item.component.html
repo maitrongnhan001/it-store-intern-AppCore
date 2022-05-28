@@ -1,12 +1,10 @@
-<a [routerLink]="'/main/product-details/' + product._id">
-    <div class="product">
-        <div class="product-image center">
-            <img class="center" [src]="product.image" alt="product">
-        </div>
-        <div class="content-product center">
-            <h4>{{product.name}}</h4>
-            <h5 class="text-danger">{{product.price | currency: 'AUD'}}</h5>
-            <a class="btn btn-primary">Buy now</a>
-        </div>
+<div class="product" (click)="handleShowDetails()">
+    <div class="product-image center">
+        <img class="center" [src]="product.image" alt="product">
     </div>
-</a>
+    <div class="content-product center">
+        <h4>{{product.name}}</h4>
+        <h5 class="text-danger">{{product.price | currency: 'AUD'}}</h5>
+        <button (click)="handleAddCart($event)" class="btn btn-primary">Buy now</button>
+    </div>
+</div>

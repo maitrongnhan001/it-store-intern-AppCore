@@ -1,21 +1,21 @@
 <section class="banner">
     <div class="banner-text text-white">
-        <h1 class="p1">Uy tính</h1>
+        <h1 class="p1">Prestige</h1>
         <h1 class="p2">&</h1>
-        <h1 class="p3">Chất lượng</h1>
-        <h4>Tạo nên chúng tôi</h4>
+        <h1 class="p3">Quality</h1>
+        <h4>Make up us</h4>
         <p>
-            IT STORE hận hạnh được phục vụ quý khách, <br>
-            chúng tôi sẽ đem đến cho quý khách những <br>
-            dịch vụ và trải niệm tốt nhất
+            IT STORE Pleased to serve you, <br>
+            We will provide you with<br>
+            the best services and experiences
         </p>
-        <button (click)="scroll(products)" class="btn btn-success">Bắt đầu</button>
+        <button (click)="scroll(products)" class="btn btn-success">Start</button>
     </div>
     <div class="banner-image"></div>
 </section>
 <app-categories></app-categories>
 <section class="products-component center" #products>
-    <h2>Sản phẩm</h2>
+    <h2>Products</h2>
     <div class="products text-color-app">
         <app-product-item 
             *ngFor="let product of listProducts"

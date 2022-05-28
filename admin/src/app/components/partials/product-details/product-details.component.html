@@ -36,13 +36,21 @@
             <p>
                 <b>Slug:</b> {{productDetails?.slug}}
             </p>
+            <p>
+                <b>Warranty:</b> {{productDetails?.warranty?.months}} Months
+            </p>
+            <p>
+                <b>Warranty details: </b>
+                <br>
+                <span [innerHTML]="productDetails?.warranty?.description"></span>
+            </p>
             <a routerLink="/main/products" class="btn btn-dark">Back</a>
             <a [routerLink]="'/main/edit-product/' + id" class="btn btn-primary">Edit</a>
         </div>
     </div>
     <br>
     <div class="product-description">
-       <b>Description:</b>
+       <h3>Description:</h3>
        <p [innerHTML]="productDetails?.description"></p> 
     </div>
 </section>

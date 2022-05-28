@@ -18,6 +18,16 @@ export class ProductService {
     return this.httpClient.get(url)
   }
 
+  getProductByCategoryId(id: string): Observable<any> {
+    const url = `${this.configService.url}/products?where[category][$in][]=${id}`
+    return this.httpClient.get(url)
+  }
+
+  getProductByContentSearch(content: string): Observable<any> {
+    const url = `${this.configService.url}/products?search=${content}`
+    return this.httpClient.get(url)
+  }
+
   getProductDetails(id: string): Observable<any> {
     const url = `${this.configService.url}/products/${id}`
     return this.httpClient.get(url)

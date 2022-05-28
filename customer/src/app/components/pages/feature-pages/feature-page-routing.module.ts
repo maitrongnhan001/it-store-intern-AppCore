@@ -16,6 +16,7 @@ import { AuthGuardService as authGuard } from '../../../services/auth-guard.serv
 const routes: Routes = [
     {path: '', component: IndexComponent},
     {path: 'products', component: ProductsComponent},
+    {path: 'products/:categoryId', component: ProductsComponent},
     {path: 'product-details/:id', component: ProductDetailsComponent},
     {
       path: 'cart', 
