@@ -9,6 +9,10 @@ export interface ProductModel {
     quantity: number,
     image: string,
     category: CategoryModel,
+    warranty: {
+        months: number,
+        description: string
+    },
     createAt: string,
     updateAt: string,
     slug: string,
@@ -29,7 +33,11 @@ export interface ProductCreateModel {
     quantity: number,
     image: string,
     category: string,
-    galleries: ProductImage[]
+    galleries: ProductImage[],
+    warranty: {
+        months: number,
+        description: string
+    }
 }
 
 export interface ProductDetailsModel {
@@ -42,6 +50,10 @@ export interface ProductDetailsModel {
     image: string,
     category: CategoryModel,
     galleries: ProductImage[],
+    warranty: {
+        months: number,
+        description: string
+    },
     createAt: string,
     updateAt: string,
     slug: string,

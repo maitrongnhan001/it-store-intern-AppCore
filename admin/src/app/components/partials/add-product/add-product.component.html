@@ -48,8 +48,23 @@
         </div>
 
         <div class="input-group">
+            Description <br>
             <angular-editor formControlName="description" [config]="editorConfig"></angular-editor>
             <p *ngIf="getDescription.invalid && getDescription.touched" class="text-danger">Description is required</p>
+        </div>
+
+        <div class="input-group">
+            <mdb-form-control class="full-width">
+                <input mdbInput mdbValidate formControlName="warrantyMonths" type="number" id="product-sku" class="form-control" />
+                <label mdbLabel for="months" class="form-label">Warranty (months)</label>
+                <mdb-error *ngIf="getMonthsWarranty.getError('required') && getMonthsWarranty.touched">Warranty is required</mdb-error>
+                <mdb-error *ngIf="getMonthsWarranty.getError('min') && getMonthsWarranty.touched">Warranty must be gather than 0</mdb-error>
+            </mdb-form-control>
+        </div>
+
+        <div class="input-group">
+            Warranty description
+            <angular-editor formControlName="warrantyDescription" [config]="editorConfig"></angular-editor>
         </div>
 
         <div class="input-file-group">

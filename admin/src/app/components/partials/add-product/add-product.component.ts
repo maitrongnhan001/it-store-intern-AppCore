@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { map, tap } from 'rxjs';
 import { CategoryModel } from 'src/app/models/category.model';
 import { ProductCreateModel, ProductImage } from 'src/app/models/product.model';
 import { CategoryService } from 'src/app/services/category.service';
@@ -84,6 +83,8 @@ export class AddProductComponent implements OnInit {
       ]),
       quantity: new FormControl(null, Validators.required),
       category: new FormControl(null, Validators.required),
+      warrantyMonths: new FormControl(0, [Validators.required, Validators.min(0)]),
+      warrantyDescription: new FormControl(""),
       image: new FormControl(null),
       avatar: new FormControl(this.initAvatarImage, Validators.required),
     })
@@ -114,6 +115,8 @@ export class AddProductComponent implements OnInit {
           this.getPrice.setValue(response.data.price)
           this.getQuantity.setValue(response.data.quantity)
           this.galleries = response.data.galleries
+          this.getMonthsWarranty.setValue(response.data.warranty.months)
+          this.getDescriptionWarranty.setValue(response.data.warranty.description)
           this.initAvatarImage = response.data.image
           this.getAvatar.setValue(response.data.image)
         },
@@ -148,6 +151,14 @@ export class AddProductComponent implements OnInit {
 
   get getQuantity(): AbstractControl {
     return this.addProductForm.get('quantity')!
+  }
+
+  get getMonthsWarranty(): AbstractControl {
+    return this.addProductForm.get('warrantyMonths')!
+  }
+
+  get getDescriptionWarranty(): AbstractControl {
+    return this.addProductForm.get('warrantyDescription')!
   }
 
   get getImage(): AbstractControl {
@@ -200,6 +211,10 @@ export class AddProductComponent implements OnInit {
       quantity: this.getQuantity.value,
       image: this.getAvatar.value,
       category: this.getCategory.value,
+      warranty: {
+        months: this.getMonthsWarranty.value,
+        description: this.getDescriptionWarranty.value
+      },
       galleries: this.galleries
     }
 

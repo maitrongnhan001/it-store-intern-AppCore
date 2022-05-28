@@ -9,29 +9,21 @@
             chúng tôi sẽ đem đến cho quý khách những <br>
             dịch vụ và trải niệm tốt nhất
         </p>
-        <a href="#" class="btn btn-success">Bắt đầu</a>
+        <button (click)="scroll(products)" class="btn btn-success">Bắt đầu</button>
     </div>
     <div class="banner-image"></div>
 </section>
 <app-categories></app-categories>
-<section class="products-component center">
+<section class="products-component center" #products>
     <h2>Sản phẩm</h2>
     <div class="products text-color-app">
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
-        <app-product-item></app-product-item>
+        <app-product-item 
+            *ngFor="let product of listProducts"
+            [product]="product"
+        ></app-product-item>
     </div>
-    <p class="text-color-app text-center">Xem tất cả sản phẩm</p>
+    <p class="text-color-app text-center">
+        <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
+        <span *ngIf="!loading">See more products</span>
+    </p>
 </section>

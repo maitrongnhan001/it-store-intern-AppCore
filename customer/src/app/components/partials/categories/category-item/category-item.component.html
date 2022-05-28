@@ -1,8 +1,12 @@
-<a routerLink="/customer/main/products">
+<a [routerLink]="'/main/products/' + category._id">
     <div class="category">
-        <div class="category-image">
-            <img src="/assets/images/laptop.jpeg" alt="category">
+        <div class="category-image center">
+            <img class="center" *ngIf="category.image.length > 0" [src]="category.image" alt="category">
+            
+            <div *ngIf="category.image.length === 0" class="no-image">
+                <h3>No imgae</h3>
+            </div>
         </div>
-        <h4>Laptop</h4>
+        <h4>{{category.name}}</h4>
     </div>
 </a>

@@ -4,66 +4,70 @@
             <br><br>
             <img class="center" src="/assets/images/logo-app.png" alt="logo">
             <br>
-            <h2 class="text-center">Đăng ký</h2>
-            <form action="" class="form-customer-login center">
+            <h2 class="text-center">Register</h2>
+            <form class="form-customer-login center" [formGroup]="userRegisterForm" (submit)="handleSubmit()">
                 <div class="input-group">
                     <mdb-form-control class="full-width">
-                        <input mdbInput type="email" id="email" class="form-control" />
+                        <input mdbInput mdbValidate formControlName="email" type="email" id="email" class="form-control" />
                         <label mdbLabel class="form-label" for="email">email</label>
+                        <mdb-error *ngIf="getEmail.getError('required') && getEmail.touched">Email is required</mdb-error>
+                        <mdb-error *ngIf="getEmail.getError('email') && getEmail.touched">Email is invalid</mdb-error>
                     </mdb-form-control>
                 </div>
                 <div class="input-group">
                     <mdb-form-control class="full-width">
-                        <input mdbInput type="text" id="password" class="form-control" />
-                        <label mdbLabel class="form-label" for="password">Mật khẩu</label>
+                        <input mdbInput mdbValidate formControlName="password" type="text" id="password" class="form-control" />
+                        <label mdbLabel class="form-label" for="password">Password</label>
+                        <mdb-error *ngIf="getPassword.invalid && getPassword.touched">Password is required</mdb-error>
                     </mdb-form-control>
                 </div>
                 <div class="input-group">
                     <mdb-form-control class="full-width">
-                        <input mdbInput type="text" id="first-name" class="form-control" />
-                        <label mdbLabel class="form-label" for="first-name">Họ</label>
+                        <input mdbInput mdbValidate formControlName="firstName" type="text" id="first-name" class="form-control" />
+                        <label mdbLabel class="form-label" for="first-name">First name</label>
                     </mdb-form-control>
                 </div>
                 <div class="input-group">
                     <mdb-form-control class="full-width">
-                        <input mdbInput type="text" id="last-name" class="form-control" />
-                        <label mdbLabel class="form-label" for="last-name">Tên</label>
+                        <input mdbInput mdbValidate formControlName="lastName" type="text" id="last-name" class="form-control" />
+                        <label mdbLabel class="form-label" for="last-name">Last name</label>
                     </mdb-form-control>
                 </div>
                 <div class="input-group">
                     <mdb-form-control class="full-width">
-                        <input mdbInput type="text" id="phone" class="form-control" />
-                        <label mdbLabel class="form-label" for="phone">Số điện thoại</label>
+                        <input mdbInput mdbValidate formControlName="phone" type="text" id="phone" class="form-control" />
+                        <label mdbLabel class="form-label" for="phone">Phone number</label>
                     </mdb-form-control>
                 </div>
                 <div class="input-group">
                     <mdb-form-control class="full-width">
-                        <input mdbInput type="date" id="DOB" class="form-control" />
-                        <label mdbLabel class="form-label" for="DOB">Ngày sinh</label>
+                        <input mdbInput mdbValidate formControlName="dob" type="date" id="DOB" class="form-control" />
+                        <label mdbLabel class="form-label" for="DOB">Date of Birth</label>
                     </mdb-form-control>
                 </div>
-                Giới tính
+                Gender
                 <div class="input-gender-group">
                     <div class="form-check">
-                        <input mdbRadio class="form-check-input" type="radio" name="gender" id="male" />
-                        <label class="form-check-label" for="male"> Nam </label>
+                        <input mdbRadio mdbValidate formControlName="gender" class="form-check-input" type="radio" name="gender" id="male" checked="true" />
+                        <label class="form-check-label" for="male"> Male </label>
                     </div>
                     <div class="form-check">
-                        <input mdbRadio class="form-check-input" type="radio" name="gender" id="female"
-                            [checked]="true" />
-                        <label class="form-check-label" for="female"> Nữ </label>
+                        <input mdbRadio mdbValidate formControlName="gender" class="form-check-input" type="radio" name="gender" id="female"/>
+                        <label class="form-check-label" for="female"> Female </label>
                     </div>
                     <div class="form-check">
-                        <input mdbRadio class="form-check-input" type="radio" name="gender" id="other"
-                            [checked]="true" />
-                        <label class="form-check-label" for="other"> Khác </label>
+                        <input mdbRadio mdbValidate formControlName="gender" class="form-check-input" type="radio" name="gender" id="other"/>
+                        <label class="form-check-label" for="other"> Other </label>
                     </div>
                 </div>
                 <div class="link-feature">
-                    <a routerLink="/customer/login">Đăng nhập</a>
+                    <a routerLink="/login">Login</a>
                 </div>
                 <br>
-                <button class="btn btn-primary center">Đăng ký</button>
+                <button type="submit" class="btn btn-primary center">
+                    <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
+                    <span *ngIf="!loading">Register</span>
+                </button>
                 <br><br><br>
             </form>
         </div>

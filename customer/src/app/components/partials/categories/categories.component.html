@@ -1,16 +1,13 @@
 <section class="categories-component center">
-    <h2>Danh mục sản phẩm</h2>
+    <h2>Categories</h2>
     <div class="categories text-color-app text-center">
-        <app-category-item></app-category-item>
-        <app-category-item></app-category-item>
-        <app-category-item></app-category-item>
-        <app-category-item></app-category-item>
-        <app-category-item></app-category-item>
-        <app-category-item></app-category-item>
-        <app-category-item></app-category-item>
-        <app-category-item></app-category-item>
-        <app-category-item></app-category-item>
-        <app-category-item></app-category-item>
+        <app-category-item
+            *ngFor="let category of listCategories"
+            [category]="category"
+        ></app-category-item>
     </div>
-    <p class="text-color-app text-center">Xem tất cả danh mục</p>
+    <p class="text-color-app text-center">
+        <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
+        <span *ngIf="!loading">See more categories</span>
+    </p>
 </section>

@@ -6,13 +6,15 @@
     margin-top: 10px;
 
     .product-image {
-        width: 200px;
-        height: 180px;
+        width: 90%;
+        height: 120px;
         overflow: hidden;
+        margin-top: 10px;
+        background-color: #c6c6c6;
+        border-radius: 5px;
 
         img {
-            width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
             vertical-align: middle;
             transition: 0.1s all ease;
@@ -22,7 +24,15 @@
     .content-product {
         width: 90%;
 
-        h4, h5 {
+        h4 {
+            width: 100%;
+            height: 30px;
+            overflow: hidden;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        h5 {
             margin: 0;
         }
     }

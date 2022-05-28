@@ -1,12 +1,12 @@
-<a routerLink="/customer/main/product-details">
+<a [routerLink]="'/main/product-details/' + product._id">
     <div class="product">
-        <div class="product-image">
-            <img src="/assets/images/laptop.jpeg" alt="category">
+        <div class="product-image center">
+            <img class="center" [src]="product.image" alt="product">
         </div>
         <div class="content-product center">
-            <h4>Laptop</h4>
-            <h5 class="text-danger">10.000.000 vnđ</h5>
-            <a class="btn btn-primary">Mua ngay</a>
+            <h4>{{product.name}}</h4>
+            <h5 class="text-danger">{{product.price | currency: 'AUD'}}</h5>
+            <a class="btn btn-primary">Buy now</a>
         </div>
     </div>
 </a>

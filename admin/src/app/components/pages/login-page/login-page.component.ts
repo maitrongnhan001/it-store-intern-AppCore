@@ -46,7 +46,6 @@ export class LoginPageComponent implements OnInit {
       .subscribe(
         (resultLogin: any) => {
           this.loading = false
-          console.log(resultLogin)
           const token = resultLogin.data.accessToken
           localStorage.setItem('token', token)
           this.router.navigate(['main'])

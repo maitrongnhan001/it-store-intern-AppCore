@@ -38,6 +38,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundPageComponent } from './components/pages/not-found-page/not-found-page.component';
 import { CategoryItemComponent } from './components/partials/categories/category-item/category-item.component';
 import { ProductItemComponent } from './components/partials/products/product-item/product-item.component';
+import { HttpClientModule } from '@angular/common/http';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -80,9 +89,20 @@ import { ProductItemComponent } from './components/partials/products/product-ite
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return '';
+        }
+      }
+    }),
+    NgxSpinnerModule,
+    ToastrModule.forRoot(),
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,8 +2,9 @@
     <h1>Thông tin tài khoản</h1>
     <div class="profile-container">
         <div class="feature-button">
-            <a routerLink="/customer/main/address" class="btn btn-primary">Quản lý địa chỉ giao hàng</a>
-            <a routerLink="/customer/main/reset-password" class="btn btn-primary">Đổi mật khẩu</a>
+            <a routerLink="/main/address" class="btn btn-primary">Address control</a>
+            <a routerLink="/main/reset-password" class="btn btn-primary">Reset password</a>
+            <button class="btn btn-danger" (click)="handleLogout()">Logout</button>
         </div>
         <br><br>
         <div class="profile-information center">

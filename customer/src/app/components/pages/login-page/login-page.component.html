@@ -4,27 +4,33 @@
             <br><br>
             <img class="center" src="/assets/images/logo-app.png" alt="logo">
             <br>
-            <h2 class="text-center">Đăng nhập</h2>
+            <h2 class="text-center">Login</h2>
             <br>
-            <form action="" class="form-customer-login center">
+            <form class="form-customer-login center" [formGroup]="loginForm" (submit)="handleSubmit()">
                 <div class="input-group">
                     <mdb-form-control class="full-width">
-                        <input mdbInput type="text" id="username" class="form-control bg-white" />
-                        <label mdbLabel class="form-label" for="username">Tên đăng nhập</label>
+                        <input mdbInput mdbValidate formControlName="username" type="text" id="username" class="form-control bg-white" />
+                        <label mdbLabel class="form-label" for="username">Email</label>
+                        <mdb-error *ngIf="getUserName.getError('required') && getUserName.touched">Email is required</mdb-error>
+                        <mdb-error *ngIf="getUserName.getError('email') && getUserName.touched">Email is invalid</mdb-error>
                     </mdb-form-control>
                 </div>
                 <div class="input-group">
                     <mdb-form-control class="full-width">
-                        <input mdbInput type="text" id="password" class="form-control bg-white" />
+                        <input mdbInput mdbValidate formControlName="password" type="password" id="password" class="form-control bg-white" />
                         <label mdbLabel class="form-label" for="password">Mật khẩu</label>
+                        <mdb-error *ngIf="getPassword.invalid && getPassword.touched">Password is required</mdb-error>
                     </mdb-form-control>
                 </div>
                 <div class="link-feature">
-                    <a routerLink="/customer/register">Đăng ký</a>
-                    <span>Quên mật khẩu</span>
+                    <a routerLink="/register">Register</a>
+                    <span>Forgot password</span>
                 </div>
                 <br>
-                <button class="btn btn-primary center">Đăng nhập</button>
+                <button type="submit" class="btn btn-primary center">
+                    <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
+                    <span *ngIf="!loading">Login</span>
+                </button>
             </form>
         </div>
     </div>

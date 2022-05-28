@@ -1,9 +1,9 @@
 <header class="customer-header">
     <div class="logo-component">
-        <a routerLink="/customer/main">
+        <a routerLink="/main">
             <img src="/assets/images/logo-app.png" alt="logo">
         </a>
-        <a routerLink="/customer/main">
+        <a routerLink="/main">
             <h4 class="text-color-app">IT STORE</h4>
         </a>
     </div>
@@ -16,25 +16,32 @@
             </button>
         </div>
     </div>
-    <div class="menu-component">
-        <div class="menu-item text-center">
-            <a style="color: #0067A0;" routerLink="/customer/main/order-history" role="button">
-                <i class="fa-solid fa-file"></i>
-                <p>Đơn hàng</p>
-            </a>
+    <div class="menu-wrapper">
+        <div class="menu-btn" (click)="handleClickMenu()">
+            <div class="menu-btn-icon">
+                <h3><i class="fa-solid fa-bars"></i> <span>Menu</span></h3>
+            </div>
         </div>
-        <div class="menu-item text-center">
-            <a style="color: #0067A0;" routerLink="/customer/main/cart" role="button">
-                <i class="fa-solid fa-cart-shopping"></i>
-
-                <p>Giỏ hàng</p>
-            </a>
-        </div>
-        <div class="menu-item text-center">
-            <a style="color: #0067A0;" routerLink="/customer/main/profile" role="button">
-                <i class="fa-solid fa-user"></i>
-                <p>Đăng nhập</p>
-            </a>
+        <div class="menu-component" [class]="hideMenu">
+            <div class="menu-item text-center" (click)="handleHideMenu()">
+                <a style="color: #0067A0;" routerLink="/main/order-history" role="button">
+                    <i class="fa-solid fa-file"></i>
+                    <p>Đơn hàng</p>
+                </a>
+            </div>
+            <div class="menu-item text-center" (click)="handleHideMenu()">
+                <a style="color: #0067A0;" routerLink="/main/cart" role="button">
+                    <i class="fa-solid fa-cart-shopping"></i>
+    
+                    <p>Giỏ hàng</p>
+                </a>
+            </div>
+            <div class="menu-item text-center" (click)="handleHideMenu()">
+                <a style="color: #0067A0;" routerLink="/main/profile" role="button">
+                    <i class="fa-solid fa-user"></i>
+                    <p>Đăng nhập</p>
+                </a>
+            </div>
         </div>
     </div>
 </header>
