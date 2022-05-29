@@ -46,6 +46,10 @@
             </p>
             <a routerLink="/main/products" class="btn btn-dark">Back</a>
             <button (click)="handleAddCart()" class="btn btn-primary">Add to cart</button>
+            <button (click)="handleClickWish(!wishStatus)" class="btn btn-floating" [class]="wishClass">
+                <i *ngIf="wishLoading" class="animation-loading fa-solid fa-spinner"></i>
+                <i *ngIf="!wishLoading" class="fa-solid fa-heart"></i>
+            </button>
         </div>
     </div>
     <br>

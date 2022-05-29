@@ -49,6 +49,12 @@
             .menu-item {
                 a {
                     cursor: pointer;
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                    }
                 
                     p {
                         margin: 0;
@@ -83,7 +89,7 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 640px) {
     .customer-header {
         //flex-direction: column;
         .search-component {

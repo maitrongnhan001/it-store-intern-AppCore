@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -11,11 +12,14 @@ import { ToastrService } from 'ngx-toastr';
 export class MenuComponent implements OnInit {
   hideMenu = 'menu-hide'
   searchForm: FormGroup
+  avatar: string|null = null
+  firstName: string = 'Login'
 
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    private activeRouter: ActivatedRoute
+    private activeRouter: ActivatedRoute,
+    private authService: AuthService
   ) {
     //in case have content search in query params,
     //then man it to input
@@ -33,6 +37,13 @@ export class MenuComponent implements OnInit {
         } else {
           this.SearchContent.setValue("")
         }
+      }
+    )
+
+    this.authService.getOwnProfile().subscribe(
+      (response: any) => {
+        this.avatar = response.data.avatar ?? null
+        this.firstName = response.data.firstName ?? 'Profile'
       }
     )
   }

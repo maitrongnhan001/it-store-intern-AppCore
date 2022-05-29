@@ -1,0 +1,64 @@
+<section class="categories center">
+    <br>
+    <h1>Wishes</h1>
+    <div class="search-component">
+        <!-- <form [formGroup]="searchForm" (submit)="handleSearch()">
+            <div class="input-group mb-3">
+                <input 
+                    formControlName="search"
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Search" 
+                    aria-label="Search"
+                    aria-describedby="button-addon2" />
+                <button class="btn btn-outline-primary" type="submit" id="button-addon2" mdbRipple rippleColor="success">
+                    <i *ngIf="searchLoading" class="animation-loading fa-solid fa-spinner"></i>
+                    <span *ngIf="!searchLoading">Search</span>
+                </button>
+            </div>
+        </form> -->
+    </div>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Min price</th>
+                    <th>Max price</th>
+                    <th>Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="item" *ngFor="let wish of wishList; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td class="name">{{wish.product.name}}</td>
+                    <td>
+                        <img [src]="wish.product.image" alt="">
+                    </td>
+                    <td>{{wish.notificationCondition.minPrice}}</td>
+                    <td>{{wish.notificationCondition.maxPrice}}</td>
+                    <td>
+                        <button
+                        (click)="handleEditWish(wish._id)"
+                            class="btn btn-outline-success btn-sm btn-floating"
+                        >
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button 
+                            (click)="handleRemoveWish(wish._id)"
+                            class="btn btn-outline-danger btn-sm btn-floating"
+                        >
+                            <i *ngIf="removeLoading == wish._id" class="animation-loading fa-solid fa-spinner"></i>
+                            <i *ngIf="removeLoading != wish._id" class="fa-solid fa-xmark"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="text-center">
+            <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
+        </p>
+    </div>
+</section>

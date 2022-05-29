@@ -34,14 +34,20 @@
             <div class="menu-item text-center" (click)="handleHideMenu()">
                 <a style="color: #0067A0;" routerLink="/main/cart" role="button">
                     <i class="fa-solid fa-cart-shopping"></i>
-
                     <p>Cart</p>
                 </a>
             </div>
             <div class="menu-item text-center" (click)="handleHideMenu()">
+                <a style="color: #0067A0;" routerLink="/main/wish" role="button">
+                    <i class="fa-solid fa-heart"></i>
+                    <p>Wish</p>
+                </a>
+            </div>
+            <div class="menu-item text-center" (click)="handleHideMenu()">
                 <a style="color: #0067A0;" routerLink="/main/profile" role="button">
-                    <i class="fa-solid fa-user"></i>
-                    <p>Login</p>
+                    <i *ngIf="!avatar" class="fa-solid fa-user"></i>
+                    <img *ngIf="avatar" [src]="avatar" alt="avatar">
+                    <p>{{firstName}}</p>
                 </a>
             </div>
         </div>

@@ -43,6 +43,8 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
 import { ReactiveFormsModule } from '@angular/forms';
+import { WishComponent } from './components/partials/wish/wish.component';
+import { EditWishComponent } from './components/partials/edit-wish/edit-wish.component';
 
 
 
@@ -69,7 +71,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     CartComponent,
     NotFoundPageComponent,
     CategoryItemComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    WishComponent,
+    EditWishComponent
   ],
   imports: [
     BrowserModule,

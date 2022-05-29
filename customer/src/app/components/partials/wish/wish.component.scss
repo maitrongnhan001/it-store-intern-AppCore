@@ -13,6 +13,10 @@
         .table {
             min-width: 1000px;
             tr {
+                .name {
+                    max-width: 300px;
+                }
+
                 td {
                     vertical-align: middle;
                     align-items: center;
@@ -26,6 +30,10 @@
                     button {
                         margin-right: 10px;
                     }
+                }
+
+                td:last-child {
+                    width: 150px;
                 }
             }
     

@@ -11,6 +11,8 @@ import { ProductDetailsComponent } from '../../partials/product-details/product-
 import { ProductsComponent } from '../../partials/products/products.component';
 import { ProfileComponent } from '../../partials/profile/profile.component';
 import { AuthGuardService as authGuard } from '../../../services/auth-guard.service';
+import { WishComponent } from '../../partials/wish/wish.component';
+import { EditWishComponent } from '../../partials/edit-wish/edit-wish.component';
 
 
 const routes: Routes = [
@@ -57,6 +59,16 @@ const routes: Routes = [
       path: 'edit-address/:id', 
       canActivate: [authGuard],
       component: AddAddressComponent
+    },
+    {
+      path: 'wish', 
+      canActivate: [authGuard],
+      component: WishComponent
+    },
+    {
+      path: 'edit-wish/:id', 
+      canActivate: [authGuard],
+      component: EditWishComponent
     }
 ];
 
