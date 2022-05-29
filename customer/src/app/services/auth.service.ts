@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
-import { UserLoginModel, UserRegisterModel } from '../models/auth.model';
+import { UserLoginModel, UserRegisterModel, UserUpdateModel } from '../models/auth.model';
 import { ConfigService } from './config.service';
 
 @Injectable({
@@ -37,5 +37,14 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token')
   }
+
+  getOwnProfile():Observable<any> {
+    const url = `${this.configService.url}/users/me/profile`
+    return this.httpClient.get(url, {headers: this.configService.getHeader()})
+  }
   
+  editOwnProfile(data: UserUpdateModel): Observable<any> {
+    const url = `${this.configService.url}/users/me/profile`
+    return this.httpClient.put(url, data, {headers: this.configService.getHeader()})
+  }
 }

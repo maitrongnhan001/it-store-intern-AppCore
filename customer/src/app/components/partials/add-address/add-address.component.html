@@ -1,45 +1,74 @@
 <section class="add-address center">
     <br>
-    <h1>Thêm địa chỉ</h1>
+    <h1>{{title}}</h1>
     <br>
-    <form class="form-add-address center">
+    <form class="form-add-address center" [formGroup]="addressForm" (submit)="handleSubmit()">
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="text" id="first-name" class="form-control" />
-                <label mdbLabel class="form-label" for="first-name">Họ</label>
+                <input mdbInput mdbValidate formControlName="fullName" type="text" id="full-name" class="form-control" />
+                <label mdbLabel class="form-label" for="full-name">Full name</label>
+                <mdb-error *ngIf="getFullName.invalid && getFullName.touched">Full name is required</mdb-error>
             </mdb-form-control>
         </div>
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="text" id="last-name" class="form-control" />
-                <label mdbLabel class="form-label" for="last-name">Tên</label>
+                <input mdbInput mdbValidate formControlName="phone" type="text" id="phone" class="form-control" />
+                <label mdbLabel class="form-label" for="phone">Phone number</label>
+                <mdb-error *ngIf="getPhone.invalid && getPhone.touched">Phone number is required</mdb-error>
             </mdb-form-control>
         </div>
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="text" id="first-name" class="form-control" />
-                <label mdbLabel class="form-label" for="first-name">Số điện thoại</label>
+                <input mdbInput mdbValidate formControlName="address" type="text" id="address" class="form-control" />
+                <label mdbLabel class="form-label" for="address">Address</label>
+                <mdb-error *ngIf="getAddress.invalid && getAddress.touched">Address is required</mdb-error>
             </mdb-form-control>
         </div>
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="text" id="last-name" class="form-control" />
-                <label mdbLabel class="form-label" for="last-name">Phường/Thị trấn</label>
+                <input mdbInput mdbValidate formControlName="ward" type="text" id="ward" class="form-control" />
+                <label mdbLabel class="form-label" for="Ward">Ward</label>
+                <mdb-error *ngIf="getWard.invalid && getWard.touched">Ward is required</mdb-error>
             </mdb-form-control>
         </div>
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="text" id="first-name" class="form-control" />
-                <label mdbLabel class="form-label" for="first-name">Quận/Huyện</label>
+                <input mdbInput mdbValidate formControlName="district" type="text" id="district" class="form-control" />
+                <label mdbLabel class="form-label" for="district">District</label>
+                <mdb-error *ngIf="getDistrict.invalid && getDistrict.touched">District is required</mdb-error>
             </mdb-form-control>
         </div>
         <div class="input-group">
             <mdb-form-control class="full-width">
-                <input mdbInput type="text" id="first-name" class="form-control" />
-                <label mdbLabel class="form-label" for="first-name">Tỉnh/Thành phố</label>
+                <input mdbInput mdbValidate formControlName="city" type="text" id="city" class="form-control" />
+                <label mdbLabel class="form-label" for="city">City</label>
+                <mdb-error *ngIf="getCity.invalid && getCity.touched">City is required</mdb-error>
             </mdb-form-control>
         </div>
-        <button class="btn btn-primary">Thêm địa chỉ</button>
+        <div class="input-group">
+            <mdb-form-control class="full-width">
+                <input mdbInput mdbValidate formControlName="country" type="text" id="country" class="form-control" />
+                <label mdbLabel class="form-label" for="country">country</label>
+                <mdb-error *ngIf="getCountry.invalid && getCountry.touched">Country is required</mdb-error>
+            </mdb-form-control>
+        </div>
+        <div class="input-group">
+            <mdb-form-control class="full-width">
+                <select mdbInput mdbValidate formControlName="isDefault" class="form-control form-select" id="isDefault">
+                    <option value="true">default</option>
+                    <option value="false">No details</option>
+                </select>
+                <label mdbLabel for="isDefault" class="form-label">Is default</label>
+                <mdb-error *ngIf="getIsDefault.invalid && getIsDefault.touched">Address default is required</mdb-error>
+            </mdb-form-control>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <i *ngIf="uploadAddressLoading" class="animation-loading fa-solid fa-spinner"></i>
+            <span *ngIf="!uploadAddressLoading">{{title}}</span>
+        </button>
         <br><br>
     </form>
 </section>
+<ngx-spinner type="ball-scale-multiple">
+    <i style="font-size: 50px; color: white" class="animation-loading fa-solid fa-spinner"></i>
+</ngx-spinner>

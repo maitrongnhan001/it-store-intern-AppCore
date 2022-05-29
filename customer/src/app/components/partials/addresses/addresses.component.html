@@ -1,66 +1,45 @@
-
 <section class="addresses center">
     <br>
-    <h1>Địa chỉ</h1>
-    <a routerLink="/main/add-address" class="btn btn-primary">Thêm địa chỉ</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Địa chỉ</th>
-                <th>Quản lý</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="item">
-                <td>1</td>
-                <td>
-                    <p><b>Tên người nhận:</b> Mai Trọng Nhân</p>
-                    <p><b>Địa chỉ nhận:</b> Hẻm 51L - Đường  3/2 Phương Xuân Khánh - Quân Ninh Kiều - TP.Cần Thơ</p>
-                    <p><b>Số điện thoại:</b> 0943363414</p>
-                </td>
-                <td>
-                    <button class="btn btn-outline-success btn-sm btn-floating">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm btn-floating">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr class="item">
-                <td>1</td>
-                <td>
-                    <p><b>Tên người nhận:</b> Mai Trọng Nhân</p>
-                    <p><b>Địa chỉ nhận:</b> Hẻm 51L - Đường  3/2 Phương Xuân Khánh - Quân Ninh Kiều - TP.Cần Thơ</p>
-                    <p><b>Số điện thoại:</b> 0943363414</p>
-                </td>
-                <td>
-                    <button class="btn btn-outline-success btn-sm btn-floating">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm btn-floating">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr class="item">
-                <td>1</td>
-                <td>
-                    <p><b>Tên người nhận:</b> Mai Trọng Nhân</p>
-                    <p><b>Địa chỉ nhận:</b> Hẻm 51L - Đường  3/2 Phương Xuân Khánh - Quân Ninh Kiều - TP.Cần Thơ</p>
-                    <p><b>Số điện thoại:</b> 0943363414</p>
-                </td>
-                <td>
-                    <button class="btn btn-outline-success btn-sm btn-floating">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm btn-floating">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot></tfoot>
-    </table>
+    <h1>Addresses</h1>
+    <a routerLink="/main/add-address" class="btn btn-primary">Add address</a>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Default</th>
+                    <th>Address</th>
+                    <th>Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="item" *ngFor="let address of litsAddresses; let i = index">
+                    <td>
+                        <div class="form-check">
+                            <i *ngIf="checkDefaultLoading == address._id" class="animation-loading fa-solid fa-spinner"></i>
+                            <input *ngIf="checkDefaultLoading != address._id" mdbCheckbox class="form-check-input" type="checkbox" [checked]="address.isDefault"
+                                id="flexCheckDefault"  (click)="handleCheckDefault(i, address._id)"/>
+                        </div>
+                    </td>
+                    <td>
+                        <p><b>Full name receiver: </b>{{address.fullName}}</p>
+                        <p><b>Address receiver: </b>{{address.fullAddress}}</p>
+                        <p><b>Phone number: </b>{{address.phone}}</p>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-success btn-sm btn-floating" (click)="handleClickEdit(address._id)">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm btn-floating" (click)="handleClickRemove(address._id)">
+                            <i *ngIf="removeLoading == address._id" class="animation-loading fa-solid fa-spinner"></i>
+                            <i *ngIf="removeLoading != address._id" class="fa-solid fa-xmark"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+        <p class="text-center">
+            <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
+        </p>
+    </div>
 </section>

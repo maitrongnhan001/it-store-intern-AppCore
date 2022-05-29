@@ -1,5 +1,5 @@
 <section class="profile center">
-    <h1>Thông tin tài khoản</h1>
+    <h1>Profile information</h1>
     <div class="profile-container">
         <div class="feature-button">
             <a routerLink="/main/address" class="btn btn-primary">Address control</a>
@@ -9,56 +9,78 @@
         <br><br>
         <div class="profile-information center">
             <div class="col-image">
-                <img src="/assets/images/6.jpeg" alt="avatar">
+                <div class="img-review">
+                    <i *ngIf="uploadImageLoading" class="animation-loading fa-solid fa-spinner"></i>
+                    <img *ngIf="avatar && !uploadImageLoading" [src]="avatar" alt="avatar">
+                    <img *ngIf="!avatar && !uploadImageLoading" src="/assets/images/no-image.png" alt="avatar">
+                </div>
+                <br>
+                <input type="file" class="form-control" id="customFile"  (change)="handleUploadImage($event)"/>
             </div>
             <div class="col-information">
-                <form class="form-profile">
+                <form class="form-profile" [formGroup]="userUpdateForm" (submit)="handleSubmit()">
                     <div class="input-group">
                         <mdb-form-control class="full-width">
-                            <input mdbInput type="text" id="first-name" class="form-control" />
-                            <label mdbLabel class="form-label" for="first-name">Họ</label>
+                            <input mdbInput mdbValidate formControlName="firstName" type="text" id="first-name"
+                                class="form-control" />
+                            <label mdbLabel class="form-label" for="first-name">first name</label>
+                            <mdb-error *ngIf="getFirstName.invalid && getFirstName.touched">First name is required
+                            </mdb-error>
                         </mdb-form-control>
                     </div>
                     <div class="input-group">
                         <mdb-form-control class="full-width">
-                            <input mdbInput type="text" id="last-name" class="form-control" />
-                            <label mdbLabel class="form-label" for="last-name">Tên</label>
+                            <input mdbInput mdbValidate formControlName="lastName" type="text" id="last-name"
+                                class="form-control" />
+                            <label mdbLabel class="form-label" for="last-name">Last name</label>
+                            <mdb-error *ngIf="getLastName.invalid && getLastName.touched">Last name is required
+                            </mdb-error>
                         </mdb-form-control>
                     </div>
                     <div class="input-group">
                         <mdb-form-control class="full-width">
-                            <input mdbInput type="text" id="phone" class="form-control" />
-                            <label mdbLabel class="form-label" for="phone">Số điện thoại</label>
+                            <input mdbInput mdbValidate formControlName="phone" type="text" id="phone"
+                                class="form-control" />
+                            <label mdbLabel class="form-label" for="phone">Phone number</label>
+                            <mdb-error *ngIf="getPhone.invalid && getPhone.touched">Phone number is required</mdb-error>
                         </mdb-form-control>
                     </div>
                     <div class="input-group">
                         <mdb-form-control class="full-width">
-                            <input mdbInput type="date" id="DOB" class="form-control" />
-                            <label mdbLabel class="form-label" for="DOB">Ngày sinh</label>
+                            <input mdbInput mdbValidate formControlName="dob" type="date" id="DOB"
+                                class="form-control" />
+                            <label mdbLabel class="form-label" for="DOB">Date of birth</label>
+                            <mdb-error *ngIf="getDOB.invalid && getDOB.touched">Date of birth is required</mdb-error>
                         </mdb-form-control>
                     </div>
-                    Giới tính
+                    Gender
                     <div class="input-gender-group">
                         <div class="form-check">
-                            <input mdbRadio class="form-check-input" type="radio" name="gender" id="male" />
-                            <label class="form-check-label" for="male"> Nam </label>
+                            <input mdbRadio mdbValidate formControlName="gender" value="male" class="form-check-input"
+                                type="radio" name="gender" id="male" />
+                            <label class="form-check-label" for="male"> Male </label>
                         </div>
                         <div class="form-check">
-                            <input mdbRadio class="form-check-input" type="radio" name="gender" id="female"
-                                [checked]="true" />
-                            <label class="form-check-label" for="female"> Nữ </label>
+                            <input mdbRadio mdbValidate formControlName="gender" value="female" class="form-check-input"
+                                type="radio" name="gender" id="female" />
+                            <label class="form-check-label" for="female"> Female </label>
                         </div>
                         <div class="form-check">
-                            <input mdbRadio class="form-check-input" type="radio" name="gender" id="other"
-                                [checked]="true" />
-                            <label class="form-check-label" for="other"> Khác </label>
+                            <input mdbRadio mdbValidate formControlName="gender" value="others" class="form-check-input"
+                                type="radio" name="gender" id="other" />
+                            <label class="form-check-label" for="other"> Others </label>
                         </div>
+                        <p *ngIf="getGender.invalid && getGender.touched" class="text-danger text-sm">Gender is required
+                        </p>
                     </div>
                     <br>
-                    <button class="btn btn-primary">Lưu thay đổi</button>
+                    <button class="btn btn-primary">Save</button>
                 </form>
             </div>
         </div>
     </div>
     <br><br>
 </section>
+<ngx-spinner type="ball-scale-multiple">
+    <i style="font-size: 50px; color: white" class="animation-loading fa-solid fa-spinner"></i>
+</ngx-spinner>

@@ -52,6 +52,11 @@ const routes: Routes = [
       path: 'add-address', 
       canActivate: [authGuard],
       component: AddAddressComponent
+    },
+    {
+      path: 'edit-address/:id', 
+      canActivate: [authGuard],
+      component: AddAddressComponent
     }
 ];
 

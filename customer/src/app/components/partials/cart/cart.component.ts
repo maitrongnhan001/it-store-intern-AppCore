@@ -74,4 +74,16 @@ export class CartComponent implements OnInit {
     this.toastr.success(`remove "${productName} successfully"`, 'Success')
   }
 
+  handleAddQuantity(event: any, productId: string) {
+    event.stopPropagation()
+    this.cartService.addCartItem({check: true, productId: productId, quantity: 1})
+  }
+
+  handleSubQuantity(event: any, productId: string) {
+    event.stopPropagation()
+    const resultSubQuantity = this.cartService.subQuantityCartItem(productId)
+    if (!resultSubQuantity.status) {
+      this.toastr.error(resultSubQuantity.msg, 'Error')
+    }
+  }
 }

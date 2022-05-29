@@ -31,11 +31,33 @@ export class CartService {
         this.storeCart()
     }
 
+    subQuantityCartItem(productId: String) {
+        const index = this.cart.findIndex(element => element.productId === productId)
+
+        if (index != -1) {
+            if (this.cart[index].quantity == 1) 
+                return {
+                    status: false,
+                    msg: 'Quantity must gather than 0'
+                }
+            this.cart[index].quantity--
+            this.storeCart()
+            return {
+                status: true,
+                msg: "Success"
+            }
+        }
+
+        return {
+            status: false,
+            msg: "Don't find object"
+        }
+    }
+
     removeCartItem(productId: String) {
         const start = this.cart.findIndex(element => element.productId === productId)
         
         this.cart.splice(start, 1)
-        console.log(this.cart)
 
         this.storeCart()
     } 

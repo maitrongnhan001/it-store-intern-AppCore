@@ -24,6 +24,14 @@
                         object-fit: fill;
                     }
                 }
+
+                .quantity-control {
+                    width: 130px;
+                    height: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                }
             }
         
             .item {

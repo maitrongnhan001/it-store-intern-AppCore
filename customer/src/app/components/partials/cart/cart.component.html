@@ -36,7 +36,19 @@
                         <img [src]="product.image" alt="product image">
                     </td>
                     <td>{{product.price | currency: "AUN"}}</td>
-                    <td>{{cart[i].quantity}}</td>
+                    <td>
+                        <div class="quantity-control">
+                            <button class="btn btn-primary btn-sm btn-floating"
+                                (click)="handleSubQuantity($event, product._id)">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            {{cart[i].quantity}}
+                            <button class="btn btn-primary btn-sm btn-floating"
+                                (click)="handleAddQuantity($event, product._id)">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </td>
                     <td>{{cart[i].quantity * product.price | currency: "AUN"}}</td>
                     <td>
                         <button class="btn btn-outline-danger btn-sm btn-floating"

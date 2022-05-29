@@ -45,12 +45,10 @@ export class LoginPageComponent implements OnInit {
     if (this.loginForm.invalid) return
 
     const loginData = this.loginForm.value
-    console.log(loginData)
     this.authService.login(loginData)
       .subscribe(
         (resultLogin: any) => {
           this.loading = false
-          console.log(resultLogin)
           const token = resultLogin.data.accessToken
           localStorage.setItem('token', token)
           this.router.navigate(['main'])
