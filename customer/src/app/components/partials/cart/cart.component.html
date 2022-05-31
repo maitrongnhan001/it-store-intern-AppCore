@@ -23,33 +23,33 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="item" *ngFor="let product of listProduct; let i = index"
-                    (click)="handleShowDetails(product._id)">
+                <tr class="item" *ngFor="let item of cart; let i = index"
+                    (click)="handleShowDetails(item.productId)">
                     <td>
                         <div class="form-check">
-                            <input mdbCheckbox class="form-check-input" type="checkbox" [checked]="cart[i].check"
+                            <input mdbCheckbox class="form-check-input" type="checkbox" [checked]="item.check"
                                 id="flexCheckDefault" (click)="handleCheckCartItem($event, i)" />
                         </div>
                     </td>
-                    <td>{{product.name}}</td>
+                    <td>{{listProduct[i].name}}</td>
                     <td>
-                        <img [src]="product.image" alt="product image">
+                        <img [src]="listProduct[i].image" alt="product image">
                     </td>
-                    <td>{{product.price | currency: "AUN"}}</td>
+                    <td>{{listProduct[i].price | currency: "AUN"}}</td>
                     <td>
                         <div class="quantity-control">
                             <button class="btn btn-primary btn-sm btn-floating"
-                                (click)="handleSubQuantity($event, product._id)">
+                                (click)="handleSubQuantity($event, item.productId)">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            {{cart[i].quantity}}
+                            {{item.quantity}}
                             <button class="btn btn-primary btn-sm btn-floating"
-                                (click)="handleAddQuantity($event, product._id)">
+                                (click)="handleAddQuantity($event, item.productId)">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
                     </td>
-                    <td>{{cart[i].quantity * product.price | currency: "AUN"}}</td>
+                    <td>{{item.quantity * listProduct[i].price | currency: "AUN"}}</td>
                     <td>
                         <button class="btn btn-outline-danger btn-sm btn-floating"
                             (click)="handleRemoveCartItem($event, i)">
@@ -62,17 +62,26 @@
         </table>
     </div>
     <br><br>
-    <div class="infomation-order">
-        <p>
-            <b>Người nhận:</b> Mai Trong Nhan
-        </p>
-        <p>
-            <b>Địa chỉ giao hàng:</b> Hẻm 51 - Đường 3/2 - Xuân Khánh - Ninh Kiều - Cần Thơ
-        </p>
-        <p>
-            <b>Thành tiền:</b> 30.000.000 vnđ
-        </p>
-        <button class="btn btn-primary">Mua hàng</button>
+    <div class="information-order">
+        <div class="addresses">
+            <h3>Address</h3>
+            <div class="address-item" *ngFor="let address of addresses; let i = index">
+                <div class="col-input">
+                    <input mdbRadio [checked]="address.isDefault" (click)="updateAddress(i)" class="form-check-input" type="radio" name="address" id="flexRadioDefault1" />
+                </div>
+                <div class="col-info">
+                    <p>
+                        <b>Human receiver:</b> {{address.fullName}}
+                    </p>
+                    <p>
+                        <b>Address:</b> {{address.fullAddress}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <h3>Total: {{total}}</h3>
+        <a routerLink="/main" class="btn btn-dark" >Back</a>
+        <button class="btn btn-primary" (click)="handleOrder()">Buy</button>
     </div>
     <br><br>
 </section>

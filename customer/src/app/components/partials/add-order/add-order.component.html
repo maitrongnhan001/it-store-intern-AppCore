@@ -1,75 +1,19 @@
 <section class="order center">
     <br>
-    <h1>Mua hàng</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    #
-                </th>
-                <th>Tên</th>
-                <th>Hình ảnh</th>
-                <th>giá</th>
-                <th>Số lượng</th>
-                <th>Giảm giá</th>
-                <th>thành tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="item">
-                <td>
-                    1
-                </td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>10.000.000</td>
-                <td>1</td>
-                <td>0</td>
-                <td>10.000.000</td>
-            </tr>
-            <tr class="item">
-                <td>
-                    2
-                </td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>10.000.000</td>
-                <td>1</td>
-                <td>0</td>
-                <td>10.000.000</td>
-            </tr>
-            <tr class="item">
-                <td>
-                    3
-                </td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>10.000.000</td>
-                <td>1</td>
-                <td>0</td>
-                <td>10.000.000</td>
-            </tr>
-        </tbody>
-        <tfoot></tfoot>
-    </table>
+    <h1>Check out</h1>
     <br><br>
     <div class="infomation-order">
         <p>
-            <b>Người nhận:</b> Mai Trong Nhan
+            <b>Human receiver:</b> {{orderTemp?.address?.fullName}}
         </p>
         <p>
-            <b>Địa chỉ giao hàng:</b> Hẻm 51 - Đường 3/2 - Xuân Khánh - Ninh Kiều - Cần Thơ
+            <b>Address:</b> {{orderTemp?.address?.fullAddress}}
         </p>
         <p>
-            <b>Thành tiền:</b> 30.000.000 vnđ
+            <b>Total:</b> {{orderTemp?.total | currency: 'AUD'}}
         </p>
-        <button class="btn btn-primary">Mua hàng</button>
+        <a routerLink="/main/cart" class="btn btn-dark">Back</a>
+        <button class="btn btn-primary" (click)="makePayment()">Check out</button>
     </div>
     <br><br>
 </section>

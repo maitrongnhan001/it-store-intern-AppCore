@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { OrderDetailsModel } from 'src/app/models/order.model';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-order-details',
@@ -7,9 +12,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderDetailsComponent implements OnInit {
 
-  constructor() { }
+  orderDetails: OrderDetailsModel|null = null
+  id: string
 
-  ngOnInit(): void {
+  constructor(
+    private orderService: OrderService,
+    private toastr: ToastrService,
+    private activeRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService,
+    private router: Router
+  ) {
+    this.id = this.activeRoute.snapshot.paramMap.get('id') as string
   }
 
+  //---------lifecycle----------//
+  ngOnInit(): void {
+    this.spinner.show()
+    this.orderService.getOrderDetails(this.id).subscribe(
+      (response: any) => {
+        this.spinner.hide()
+        this.orderDetails = response.data
+      },
+      (error: any) => {
+        this.spinner.hide()
+        this.toastr.error("Can't loading order", 'Error')
+      }
+    )
+  }
+
+  //--------handle--------//
+  showDetails(id: string) {
+    this.router.navigate(['main', 'product-details', id])
+  }
 }

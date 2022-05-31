@@ -45,10 +45,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WishComponent } from './components/partials/wish/wish.component';
 import { EditWishComponent } from './components/partials/edit-wish/edit-wish.component';
-
-
-
-
+import { ResetPasswordComponent } from './components/partials/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +70,8 @@ import { EditWishComponent } from './components/partials/edit-wish/edit-wish.com
     CategoryItemComponent,
     ProductItemComponent,
     WishComponent,
-    EditWishComponent
+    EditWishComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +102,8 @@ import { EditWishComponent } from './components/partials/edit-wish/edit-wish.com
     }),
     NgxSpinnerModule,
     ToastrModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [JwtHelperService],
   bootstrap: [AppComponent]

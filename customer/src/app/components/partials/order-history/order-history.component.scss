@@ -1,7 +1,14 @@
 .order-history {
     width: 90%;
 
+
+    .table-wrapper {
+        width: 100%;
+        overflow-x: scroll;
+    }
     .table {
+        min-width: 1000px;
+        
         tr {
             td {
                 vertical-align: middle;

@@ -13,6 +13,7 @@ import { ProfileComponent } from '../../partials/profile/profile.component';
 import { AuthGuardService as authGuard } from '../../../services/auth-guard.service';
 import { WishComponent } from '../../partials/wish/wish.component';
 import { EditWishComponent } from '../../partials/edit-wish/edit-wish.component';
+import { ResetPasswordComponent } from '../../partials/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -69,6 +70,11 @@ const routes: Routes = [
       path: 'edit-wish/:id', 
       canActivate: [authGuard],
       component: EditWishComponent
+    },
+    {
+      path: 'reset-password', 
+      canActivate: [authGuard],
+      component: ResetPasswordComponent
     }
 ];
 

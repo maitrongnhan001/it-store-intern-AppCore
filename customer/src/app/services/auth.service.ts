@@ -47,4 +47,21 @@ export class AuthService {
     const url = `${this.configService.url}/users/me/profile`
     return this.httpClient.put(url, data, {headers: this.configService.getHeader()})
   }
+
+  getResetPasswordToken(email: string): Observable<any> {
+    const url = `${this.configService.url}/auth/forgot-password`
+    return this.httpClient.post(url, {email: email}, {headers: this.configService.getHeader()})
+  }
+
+  resetPassword(newPassword: string, resetPasswordToken: string): Observable<any> {
+    const url = `${this.configService.url}/auth/reset-password`
+    return this.httpClient.post(
+      url, 
+      {
+        newPassword: newPassword,
+        token: resetPasswordToken
+      },
+      {headers: this.configService.getHeader()}
+    )
+  }
 }

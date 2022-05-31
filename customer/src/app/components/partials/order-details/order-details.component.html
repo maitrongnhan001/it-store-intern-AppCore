@@ -1,73 +1,56 @@
-<section class="order-detail center">
+<section class="order-details center">
     <br>
-    <h1>Chi tiết đơn hàng</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    #
-                </th>
-                <th>Tên</th>
-                <th>Hình ảnh</th>
-                <th>giá</th>
-                <th>Số lượng</th>
-                <th>thành tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="item">
-                <td>
-                    1
-                </td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>10.000.000</td>
-                <td>1</td>
-                <td>10.000.000</td>
-            </tr>
-            <tr class="item">
-                <td>
-                    2
-                </td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>10.000.000</td>
-                <td>1</td>
-                <td>10.000.000</td>
-            </tr>
-            <tr class="item">
-                <td>
-                    3
-                </td>
-                <td>Laptop</td>
-                <td>
-                    <img src="/assets/images/laptop.jpeg" alt="">
-                </td>
-                <td>10.000.000</td>
-                <td>1</td>
-                <td>10.000.000</td>
-            </tr>
-        </tbody>
-        <tfoot></tfoot>
-    </table>
-    <br><br>
-    <div class="infomation-order">
+    <h1>Order details</h1>
+    <br>
+    <div class="generate-order-information">
+    </div>
+    <br>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="item" *ngFor="let item of orderDetails?.items; let i = index" (click)="showDetails(item.product._id)">
+                    <td>{{ i + 1 }}</td>
+                    <td class="name-product">{{item.product.name}}</td>
+                    <td>
+                        <img [src]="item.product.image" alt="item-photo">
+                    </td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.product.price | currency: 'AUD'}}</td>
+                    <td>-{{item.discount | currency: 'AUD'}}</td>
+                    <td>{{item.totalPriceWithDiscount | currency: 'AUD'}}</td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+    <br>
+    <div class="order-description">
         <p>
-            <b>Người nhận:</b> Mai Trong Nhan
+            <b>Human receiver:</b>{{orderDetails?.address?.fullName}} <br>
+            <b>Address:</b>{{orderDetails?.address?.fullAddress}}
         </p>
         <p>
-            <b>Địa chỉ giao hàng:</b> Hẻm 51 - Đường 3/2 - Xuân Khánh - Ninh Kiều - Cần Thơ
+            <b>Payment Method:</b> {{orderDetails?.paymentMethod}}
         </p>
         <p>
-            <b>Số điện thoại:</b> 0943363414
+            <b>Order status:</b> {{orderDetails?.status}}
         </p>
         <p>
-            <b>Thành tiền:</b> 30.000.000 vnđ
+            <b>Total:</b> {{orderDetails?.totalPrice | currency: 'AUD'}}
         </p>
     </div>
-    <br><br>
 </section>
+<ngx-spinner type="ball-scale-multiple">
+    <i style="font-size: 50px; color: white" class="animation-loading fa-solid fa-spinner"></i>
+</ngx-spinner>

@@ -1,0 +1,36 @@
+.edit-wish {
+    width: 90%;
+    max-width: 500px;
+
+    .edit-wish-form {
+        fieldset {
+            border: 1px solid #efefef;
+            border-radius: 5px;
+
+            .notification-wrapper {
+                .form-check {
+                    margin: 20px 30px;
+                    width: auto !important;
+                }
+
+                .input-group {
+                    width: 90%;
+                    margin: 0 auto;
+                }
+            }
+
+            legend {
+                font-size: 16px;
+                position: relative;
+                bottom: 14px;
+                left: 10px;
+                background-color: #ffffff;
+                width: auto;
+            }
+        }
+    }
+
+    .btn {
+        margin-right: 10px;
+    }
+}
