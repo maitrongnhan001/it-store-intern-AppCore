@@ -17,8 +17,8 @@ export class CategoryService {
     this.header = (new HttpHeaders()).set("Authorization", `Bearer ${token}`)
   }
 
-  getCategories(): Observable<any> {
-    const url = `${this.configService.url}/admin/categories?limit=100`
+  getCategories(page: number = 1, limit: number = 1000): Observable<any> {
+    const url = `${this.configService.url}/admin/categories?page=${page}&limit=${limit}`
     return this.httpClient.get<any>(url, {headers: this.header})
   }
 

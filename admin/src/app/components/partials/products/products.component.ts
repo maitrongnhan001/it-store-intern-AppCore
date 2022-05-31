@@ -16,6 +16,8 @@ export class ProductsComponent implements OnInit {
   searchLoading= false
   deleteProductLoading: string | null = null
   searchForm: FormGroup
+  page = 1
+  totalPage = 0
 
   constructor(
     private router: Router,
@@ -29,10 +31,12 @@ export class ProductsComponent implements OnInit {
   //--------lifecycle---------//
   ngOnInit(): void {
     this.loading = true
-    this.productService.getProducts().subscribe(
+    this.productService.getProducts(this.page, 10).subscribe(
       (response: any) => {
         this.loading = false
         this.listProduct = response.data
+        this.page = response.page
+        this.totalPage = response.totalPage
       },
       (error: any) => {
         this.loading = false
@@ -80,6 +84,22 @@ export class ProductsComponent implements OnInit {
       (error: any) => {
         this.deleteProductLoading = null
         this.toastr.error('Delete category failed', 'Error')
+      }
+    )
+  }
+
+  handleShowMore() {
+    this.loading = true
+    this.productService.getProducts(this.page + 1, 10).subscribe(
+      (response: any) => {
+        this.loading = false
+        this.listProduct = [...this.listProduct ,...response.data]
+        this.page = response.page
+        this.totalPage = response.totalPage
+      },
+      (error: any) => {
+        this.loading = false
+        this.toastr.error("Can't loading product", 'Error')
       }
     )
   }

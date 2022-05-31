@@ -24,6 +24,6 @@
     </div>
     <p class="text-color-app text-center">
         <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
-        <span *ngIf="!loading">See more products</span>
+        <span *ngIf="!loading && (page < totalPage)" (click)="handleShowMore()">See more products</span>
     </p>
 </section>

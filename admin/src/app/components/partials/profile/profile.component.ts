@@ -12,6 +12,7 @@ import { PasswordService } from 'src/app/services/password.service';
 export class ProfileComponent implements OnInit {
   resetPasswordForm: FormGroup
   isMatch = true
+  resetPasswordToken: string = ''
 
   loading = false
 
@@ -28,6 +29,14 @@ export class ProfileComponent implements OnInit {
 
   //-------lifecycle--------//
   ngOnInit(): void {
+    this.passwordService.getResetPasswordToken().subscribe(
+      (response: any) => {
+        this.resetPasswordToken = response.data.resetPasswordToken
+      },
+      (error: any) => {
+        this.toastr.error('Get token failed', 'Error')
+      }
+    )
   }
 
   //---------handle---------//
@@ -49,7 +58,7 @@ export class ProfileComponent implements OnInit {
     if (this.getConfirmPassword.invalid || !this.checkPassword()) return
 
     this.loading = true
-    this.passwordService.resetPassword(this.getPassword.value).subscribe(
+    this.passwordService.resetPassword(this.getPassword.value, this.resetPasswordToken).subscribe(
       (response: any) => {
         this.loading = false
         this.toastr.success('Reset password successfully', 'Success')

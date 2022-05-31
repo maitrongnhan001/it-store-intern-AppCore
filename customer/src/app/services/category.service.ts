@@ -14,8 +14,8 @@ export class CategoryService {
   ) {}
 
   //-------------handle-----------------//
-  getCategory(): Observable<any> {
-    const url = `${this.configService.url}/categories`
+  getCategory(page: number = 1, limit: number = 1000): Observable<any> {
+    const url = `${this.configService.url}/categories?page=${page}&limit=${limit}`
     return this.httpClient.get(url)
   }
 

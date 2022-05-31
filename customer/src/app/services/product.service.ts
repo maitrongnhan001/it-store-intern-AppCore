@@ -13,13 +13,13 @@ export class ProductService {
     private configService: ConfigService
   ) {}
 
-  getProduct():Observable<any> {
-    const url = `${this.configService.url}/products`
+  getProduct(page: number = 1, limit: number = 1000):Observable<any> {
+    const url = `${this.configService.url}/products?page=${page}&limit=${limit}`
     return this.httpClient.get(url)
   }
 
-  getProductByCategoryId(id: string): Observable<any> {
-    const url = `${this.configService.url}/products?where[category][$in][]=${id}`
+  getProductByCategoryId(id: string, page: number = 1, limit: number = 1000): Observable<any> {
+    const url = `${this.configService.url}/products?where[category][$in][]=${id}&page=${page}&limit=${limit}`
     return this.httpClient.get(url)
   }
 

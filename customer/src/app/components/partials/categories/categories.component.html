@@ -8,6 +8,6 @@
     </div>
     <p class="text-color-app text-center">
         <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
-        <span *ngIf="!loading">See more categories</span>
+        <span *ngIf="!loading && (page < totalPage)" (click)="handleShowMore()">See more categories</span>
     </p>
 </section>

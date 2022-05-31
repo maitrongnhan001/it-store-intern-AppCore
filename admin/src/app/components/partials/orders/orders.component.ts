@@ -15,6 +15,8 @@ export class OrdersComponent implements OnInit {
   productDetail: ProductDetailsModel|null = null
   orders: OrderModel[] = []
   searchForm: FormGroup
+  page = 1
+  totalPage = 0
   
   loading = false
   searchLoading = false
@@ -32,10 +34,12 @@ export class OrdersComponent implements OnInit {
   //--------lifecycle----------//
   ngOnInit(): void {
     this.loading = true
-    this.orderService.getOrders().subscribe(
+    this.orderService.getOrders(this.page, 10).subscribe(
       (response: any) => {
         this.loading = false
         this.orders = response.data
+        this.page = response.page
+        this.totalPage = response.totalPage
       },
       (error) => {
         this.loading = false
@@ -62,6 +66,23 @@ export class OrdersComponent implements OnInit {
         this.toastr.error("Can't loading orders", 'Error')
       }
      )
+  }
+
+  handleShowMore() {
+    this.loading = true
+    this.orderService.getOrders(this.page + 1, 10).subscribe(
+      (response: any) => {
+        this.loading = false
+        this.orders = [...this.orders ,...response.data]
+        this.page = response.page
+        this.totalPage = response.totalPage
+      },
+
+      (error) => {
+        this.loading = false
+        this.toastr.error("Can't loading orders", 'Error')
+      }
+    )
   }
 
   handleOrderDetails(id: string) {

@@ -17,8 +17,20 @@ export class PasswordService {
     this.header = (new HttpHeaders()).set("Authorization", `Bearer ${token}`)
   }
 
-  resetPassword(newPassword: string): Observable<any> {
+  getResetPasswordToken(): Observable<any> {
+    const url = `${this.configService.url}/admin/auth/forgot-password`
+    return this.httpClient.post(url, {email: 'administrator@mailinator.com'}, {headers: this.header})
+  }
+
+  resetPassword(newPassword: string, resetPasswordToken: string): Observable<any> {
     const url = `${this.configService.url}/admin/auth/reset-password`
-    return this.httpClient.post<any>(url, {newPassword}, {headers: this.header})
+    return this.httpClient.post(
+      url, 
+      {
+        newPassword: newPassword,
+        token: resetPasswordToken
+      },
+      {headers: this.header}
+    )
   }
 }

@@ -18,8 +18,8 @@ export class ProductService {
     this.header = (new HttpHeaders()).set("Authorization", `Bearer ${token}`)
   }
 
-  getProducts(): Observable<any> {
-    const url = `${this.configService.url}/admin/products?limit=100`
+  getProducts(page:number = 1, limit: number = 1000): Observable<any> {
+    const url = `${this.configService.url}/admin/products?page=${page}&limit=${limit}`
     return this.httpClient.get(url, {headers: this.header})
   }
 

@@ -16,6 +16,8 @@ export class CategoriesComponent implements OnInit {
   searchLoading= false
   deleteCategoryLoading: string | null = null
   searchForm: FormGroup
+  page = 1
+  totalPage = 0
 
   constructor(
     private categoryService: CategoryService,
@@ -30,10 +32,12 @@ export class CategoriesComponent implements OnInit {
   //----------lifecycle----------//
   ngOnInit(): void {
     this.loading = true
-    this.categoryService.getCategories().subscribe(
+    this.categoryService.getCategories(this.page, 10).subscribe(
       (response: any) => {
         this.loading = false
         this.listCategory = response.data
+        this.page = response.page
+        this.totalPage = response.totalPage
       },
 
       (error) => {
@@ -85,6 +89,23 @@ export class CategoriesComponent implements OnInit {
       (error: any) => {
         this.deleteCategoryLoading = null
         this.toastr.error('Delete category failed', 'Error')
+      }
+    )
+  }
+
+  handleShowMore() {
+    this.loading = true
+    this.categoryService.getCategories(this.page + 1, 10).subscribe(
+      (response: any) => {
+        this.loading = false
+        this.listCategory = [...this.listCategory ,...response.data]
+        this.page = response.page
+        this.totalPage = response.totalPage
+      },
+
+      (error) => {
+        this.loading = false
+        this.showError()
       }
     )
   }

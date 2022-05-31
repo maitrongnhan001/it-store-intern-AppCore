@@ -11,6 +11,8 @@ import { CategoryService } from 'src/app/services/category.service';
 export class CategoriesComponent implements OnInit {
   listCategories: CategoryModel[]  = []
   loading = false
+  page = 1
+  totalPage = 0
 
   constructor(
     private categoryService: CategoryService,
@@ -20,12 +22,32 @@ export class CategoriesComponent implements OnInit {
   //------------lifecycle-------------//
   ngOnInit(): void {
     this.loading = true
-    this.categoryService.getCategory().subscribe(
+    this.categoryService.getCategory(this.page, 10).subscribe(
       (response: any) => {
         this.loading = false
         this.listCategories = response.data
+        this.page = response.page
+        this.totalPage = response.totalPage
       },
       (error: any) => {
+        this.loading = false
+        this.toastr.error('Load category failed')
+      }
+    )
+  }
+
+  //----------handle---------//
+  handleShowMore() {
+    this.loading = true
+    this.categoryService.getCategory(this.page + 1, 10).subscribe(
+      (response: any) => {
+        this.loading = false
+        this.listCategories = [...this.listCategories ,...response.data]
+        this.page = response.page
+        this.totalPage = response.totalPage
+      },
+
+      (error) => {
         this.loading = false
         this.toastr.error('Load category failed')
       }

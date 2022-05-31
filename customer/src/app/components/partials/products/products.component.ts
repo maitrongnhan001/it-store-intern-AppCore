@@ -16,6 +16,8 @@ export class ProductsComponent implements OnInit {
   categoryId: string | null = null
   contentSearch: string | null = null
   listProducts: ProductModel[] = []
+  page = 1
+  totalPage = 0
 
   loading = false
 
@@ -44,11 +46,13 @@ export class ProductsComponent implements OnInit {
     if (this.categoryId) {
       //load data in category
       this.productService
-        .getProductByCategoryId(this.categoryId)
+        .getProductByCategoryId(this.categoryId, this.page, 10)
         .subscribe(
           (response: any) => {
             this.listProducts = response.data
             this.loading = false
+            this.page = response.page
+          this.totalPage = response.totalPage
           },
           (error: any) => {
             this.loading = false
@@ -105,6 +109,25 @@ export class ProductsComponent implements OnInit {
         this.toastr.error('Load products failed')
       }
     )
+  }
+
+  handleShowMore() {
+    this.loading = true
+    if (this.categoryId) {
+      this.productService.getProductByCategoryId(this.categoryId ,this.page + 1, 10).subscribe(
+        (response: any) => {
+          this.loading = false
+          this.listProducts = [...this.listProducts ,...response.data]
+          this.page = response.page
+          this.totalPage = response.totalPage
+        },
+  
+        (error) => {
+          this.loading = false
+          this.toastr.error('Load products failed')
+        }
+      )
+    }
   }
 
 }

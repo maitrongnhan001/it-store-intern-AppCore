@@ -50,6 +50,7 @@
         </table>
         <p class="text-center">
             <i *ngIf="loading" class="animation-loading fa-solid fa-spinner"></i>
+            <span *ngIf="!loading && (page < totalPage)" (click)="handleShowMore()" class="text-primary link-text">See more orders</span>
         </p>
     </div>
 </section>
